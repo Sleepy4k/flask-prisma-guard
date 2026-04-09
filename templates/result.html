@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
-{% block title %}Hasil Prediksi | MindCheck SRQ-29{% endblock %}
+{% block title %}Hasil Prediksi | Prisma Guard{% endblock %}
 {% block page_styles %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/result.css') }}">
 {% endblock %}
 
 {% block content %}
-<div class="row justify-content-center">
+<div class="row justify-content-center result-shell">
     <div class="col-lg-9">
         <div class="card border-0 shadow-sm">
             <div class="card-body p-4 p-lg-5">
@@ -20,20 +20,18 @@
                     {% set status_class = 'status-alert' %}
                 {% endif %}
 
-                <div class="result-banner mb-4">
+                <div class="result-banner enterprise-banner mb-4">
                     <span class="status-pill {{ status_class }}">{{ status }}</span>
                     {% if probability is not none %}
                         <p class="mb-2 mt-3">Probabilitas indikasi masalah mental:</p>
                         <h2 class="display-6 fw-bold text-danger">{{ probability }}%</h2>
-                        <div class="progress result-progress" role="progressbar" aria-label="Prediction probability" aria-valuenow="{{ probability }}" aria-valuemin="0" aria-valuemax="100">
-                            <div class="progress-bar bg-danger" style="width: {{ probability }}%"></div>
-                        </div>
+                        <progress class="result-progress-native" value="{{ probability }}" max="100">{{ probability }}%</progress>
                     {% else %}
                         <p class="mb-0 mt-3 text-secondary">Probabilitas tidak tersedia karena terjadi masalah pada proses prediksi.</p>
                     {% endif %}
                 </div>
 
-                <div class="card border-0 bg-light mb-4">
+                <div class="card border-0 bg-light mb-4 summary-card">
                     <div class="card-body">
                         <h2 class="h6 fw-bold mb-3">Ringkasan Data Mahasiswa</h2>
                         <div class="row g-2 small">

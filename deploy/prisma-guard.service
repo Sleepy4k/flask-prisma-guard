@@ -1,5 +1,5 @@
 [Unit]
-Description=MindCheck Flask Gunicorn Service
+Description=Prisma Guard Flask Gunicorn Service
 After=network.target
 
 [Service]

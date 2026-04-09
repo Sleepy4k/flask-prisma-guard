@@ -1,21 +1,27 @@
 {% extends 'base.html' %}
-{% block title %}Tentang | MindCheck SRQ-29{% endblock %}
+{% block title %}Tentang | Prisma Guard{% endblock %}
 {% block page_styles %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
 {% endblock %}
 
 {% block content %}
-<section class="mb-5">
+<section class="mb-5 about-intro">
     <h1 class="display-6 fw-bold mb-3">Tentang Proyek</h1>
-    <p class="text-secondary">MindCheck SRQ-29 adalah alat skrining awal untuk membantu mahasiswa mengenali kemungkinan risiko kesehatan mental berdasarkan kombinasi data demografis dan jawaban kuesioner SRQ-29.</p>
+    <p class="text-secondary">Prisma Guard adalah alat skrining awal untuk membantu mahasiswa mengenali kemungkinan risiko kesehatan mental berdasarkan kombinasi data demografis dan jawaban kuesioner SRQ-29.</p>
 </section>
 
 <section class="row g-4 mb-5">
     <div class="col-lg-7">
-        <div class="card border-0 shadow-sm h-100">
+        <div class="card border-0 shadow-sm h-100 enterprise-card">
             <div class="card-body p-4">
                 <h2 class="h4 fw-semibold mb-3">Metodologi</h2>
                 <p class="text-secondary mb-3">Sistem menggunakan alur pemodelan Machine Learning berbasis <strong>Logistic Regression</strong> untuk klasifikasi risiko, didahului oleh tahapan <strong>Standard Scaler</strong> dan <strong>Principal Component Analysis (PCA)</strong> agar fitur lebih stabil dan efisien saat inferensi.</p>
+                <ul class="pipeline-list mb-3">
+                    <li>Input Demografis + SRQ-29</li>
+                    <li>Normalisasi dengan Standard Scaler</li>
+                    <li>Reduksi dimensi dengan PCA</li>
+                    <li>Prediksi klasifikasi dengan Logistic Regression</li>
+                </ul>
                 <div class="row g-3">
                     <div class="col-sm-6">
                         <div class="stat-box">
@@ -34,10 +40,10 @@
         </div>
     </div>
     <div class="col-lg-5">
-        <div class="card border-0 shadow-sm h-100">
+        <div class="card border-0 shadow-sm h-100 enterprise-card">
             <div class="card-body p-4">
                 <h2 class="h4 fw-semibold mb-3">Privasi Sistem</h2>
-                <ul class="text-secondary ps-3 mb-0">
+                <ul class="text-secondary ps-3 mb-0 privacy-list">
                     <li>Tidak menggunakan database.</li>
                     <li>Tidak menyimpan riwayat input pengguna.</li>
                     <li>Pemrosesan dilakukan saat request berlangsung.</li>
@@ -49,7 +55,7 @@
 </section>
 
 <section>
-    <div class="alert alert-danger border-0 shadow-sm" role="alert">
+    <div class="alert alert-danger border-0 shadow-sm enterprise-disclaimer" role="alert">
         <h2 class="h5 fw-bold">Batasan Sistem</h2>
         <p class="mb-0">Hasil dari aplikasi ini <strong>bukan diagnosis medis</strong>, melainkan skrining awal. Jika Anda atau teman Anda mengalami gejala yang mengganggu aktivitas harian, segera hubungi layanan konseling kampus, psikolog, atau tenaga kesehatan profesional.</p>
     </div>

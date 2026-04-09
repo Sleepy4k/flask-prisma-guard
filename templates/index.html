@@ -1,34 +1,51 @@
 {% extends 'base.html' %}
-{% block title %}Beranda | MindCheck SRQ-29{% endblock %}
+{% block title %}Beranda | Prisma Guard{% endblock %}
 {% block page_styles %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 {% endblock %}
 
 {% block content %}
-<section class="hero-panel rounded-4 p-4 p-lg-5 mb-5">
+<section class="hero-panel enterprise-hero rounded-4 p-4 p-lg-5 mb-5">
     <div class="row align-items-center g-4">
         <div class="col-lg-7">
-            <span class="badge text-bg-light border border-danger-subtle text-danger mb-3">Screening Kesehatan Mental Mahasiswa</span>
-            <h1 class="display-6 fw-bold mb-3">Deteksi Dini Risiko Kesehatan Mental dengan SRQ-29</h1>
-            <p class="lead text-secondary mb-4">Isi data singkat dan kuesioner SRQ-29 untuk mendapatkan prediksi awal berbasis model Machine Learning Logistic Regression.</p>
-            <a href="{{ url_for('main.predict') }}" class="btn btn-primary btn-lg px-4">Mulai Prediksi</a>
+            <span class="badge text-bg-light border border-danger-subtle text-danger mb-3 hero-eyebrow">Screening Kesehatan Mental Mahasiswa</span>
+            <h1 class="display-6 fw-bold mb-3 hero-title">Prisma Guard untuk Deteksi Dini Kesehatan Mental Mahasiswa</h1>
+            <p class="lead text-secondary mb-4">Lengkapi data mahasiswa dan kuesioner SRQ-29 untuk mendapatkan prediksi awal berbasis model Machine Learning Logistic Regression.</p>
+            <div class="hero-actions d-flex flex-wrap gap-2">
+                <a href="{{ url_for('main.predict') }}" class="btn btn-primary btn-lg px-4">Mulai Prediksi</a>
+                <a href="{{ url_for('main.about') }}" class="btn btn-outline-secondary btn-lg px-4">Pelajari Metode</a>
+            </div>
         </div>
         <div class="col-lg-5">
             <div class="glass-card p-4 h-100">
-                <h2 class="h5 fw-semibold mb-3">Kenapa MindCheck?</h2>
+                <h2 class="h5 fw-semibold mb-3">Kenapa Prisma Guard?</h2>
                 <ul class="mb-0 ps-3 text-secondary">
                     <li>Proses cepat, sekitar 3-5 menit.</li>
                     <li>Input berbasis SRQ-29 + data demografis.</li>
                     <li>Hasil probabilitas disertai rekomendasi awal.</li>
                     <li>Tidak menyimpan data pengguna ke database.</li>
                 </ul>
+                <div class="trust-metrics mt-4">
+                    <div class="metric-item">
+                        <strong>4 Langkah</strong>
+                        <span>Alur sederhana</span>
+                    </div>
+                    <div class="metric-item">
+                        <strong>29 SRQ</strong>
+                        <span>Pertanyaan validasi</span>
+                    </div>
+                    <div class="metric-item">
+                        <strong>In-Memory</strong>
+                        <span>Tanpa simpan data</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <section class="mb-5">
-    <h2 class="h3 fw-bold mb-4">Cara Kerja</h2>
+    <h2 class="h3 fw-bold mb-4 section-title">Cara Kerja</h2>
     <div class="row g-3">
         <div class="col-md-4">
             <div class="card h-100 border-0 shadow-sm step-card">
@@ -61,7 +78,8 @@
 </section>
 
 <section>
-    <h2 class="h3 fw-bold mb-4">FAQ</h2>
+    <h2 class="h3 fw-bold mb-4 section-title">FAQ</h2>
+    <div class="faq-shell p-3 p-md-4 rounded-4">
     <div class="accordion" id="faqAccordion">
         <div class="accordion-item">
             <h3 class="accordion-header" id="faqOneHeader">
@@ -103,6 +121,7 @@
                 <div class="accordion-body text-secondary">Mahasiswa yang ingin melakukan self-check awal terkait kondisi psikologis untuk meningkatkan kewaspadaan dan mencari bantuan lebih awal.</div>
             </div>
         </div>
+    </div>
     </div>
 </section>
 {% endblock %}

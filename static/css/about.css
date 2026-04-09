@@ -1,8 +1,50 @@
+.about-intro {
+    border-left: 4px solid #ffd2d5;
+    padding-left: 1rem;
+}
+
+.enterprise-card {
+    border: 1px solid #ebedf3 !important;
+    background: linear-gradient(180deg, #ffffff 0%, #fcfcff 100%);
+}
+
+.pipeline-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.pipeline-list li {
+    position: relative;
+    padding: 0.48rem 0.6rem 0.48rem 1.6rem;
+    margin-bottom: 0.3rem;
+    border-radius: 0.55rem;
+    background: #f8fafc;
+    color: #586072;
+}
+
+.pipeline-list li::before {
+    content: "";
+    position: absolute;
+    left: 0.7rem;
+    top: 0.9rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--telkom-red);
+}
+
 .stat-box {
     border: 1px solid #ffd9dc;
     border-radius: 0.75rem;
     padding: 0.9rem;
-    background-color: #fff9f9;
+    background: linear-gradient(140deg, #fffdfd 0%, #fff5f6 100%);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(237, 28, 36, 0.12);
 }
 
 .stat-value {
@@ -15,4 +57,18 @@
 .stat-label {
     font-size: 0.8rem;
     color: #666666;
+}
+
+.alert-danger {
+    background: linear-gradient(120deg, #fff7f8 0%, #fff2f4 100%);
+    color: #6f1418;
+    border-left: 4px solid var(--telkom-red) !important;
+}
+
+.privacy-list li {
+    margin-bottom: 0.45rem;
+}
+
+.enterprise-disclaimer {
+    border-radius: 0.9rem;
 }

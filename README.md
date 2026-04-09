@@ -1,6 +1,6 @@
-# MindCheck SRQ-29 (Flask)
+# Prisma Guard
 
-Web app skrining kesehatan mental mahasiswa berbasis SRQ-29 dengan model Logistic Regression (Scaler + PCA).
+Prisma Guard adalah web app skrining kesehatan mental mahasiswa berbasis SRQ-29 dengan model Logistic Regression (Scaler + PCA).
 
 Versi Python yang didukung: 3.10 hingga 3.13.
 
@@ -103,7 +103,7 @@ Jika sukses, aplikasi siap dipasang sebagai service.
 
 Salin file service:
 
-sudo cp deploy/mindcheck.service /etc/systemd/system/mindcheck.service
+sudo cp deploy/prisma-guard.service /etc/systemd/system/prisma-guard.service
 
 Pastikan path pada file service sesuai:
 
@@ -113,16 +113,16 @@ Pastikan path pada file service sesuai:
 Aktifkan service:
 
 sudo systemctl daemon-reload
-sudo systemctl enable mindcheck
-sudo systemctl restart mindcheck
-sudo systemctl status mindcheck
+sudo systemctl enable prisma-guard
+sudo systemctl restart prisma-guard
+sudo systemctl status prisma-guard
 
 ### 6) Setup Nginx reverse proxy
 
 Salin config nginx:
 
-sudo cp deploy/mindcheck.nginx.conf /etc/nginx/sites-available/mindcheck
-sudo ln -s /etc/nginx/sites-available/mindcheck /etc/nginx/sites-enabled/mindcheck
+sudo cp deploy/prisma-guard.nginx.conf /etc/nginx/sites-available/prisma-guard
+sudo ln -s /etc/nginx/sites-available/prisma-guard /etc/nginx/sites-enabled/prisma-guard
 
 Edit server_name pada file Nginx sesuai domain.
 

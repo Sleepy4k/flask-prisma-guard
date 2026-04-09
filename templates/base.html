@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}MindCheck SRQ-29{% endblock %}</title>
+    <title>{% block title %}Prisma Guard{% endblock %}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -13,19 +13,25 @@
     {% block head %}{% endblock %}
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top main-navbar">
         <div class="container py-1">
-            <a class="navbar-brand fw-bold brand-red" href="{{ url_for('main.index') }}">MindCheck SRQ-29</a>
+            <a class="navbar-brand fw-bold brand-red d-flex align-items-center gap-2 brand-lockup" href="{{ url_for('main.index') }}">
+                <span class="brand-chip">PG</span>
+                <span class="brand-text-wrap">
+                    <span class="brand-title">Prisma Guard</span>
+                    <span class="brand-subtitle">Student Mental Screening</span>
+                </span>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="mainNavbar">
                 <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
                     <li class="nav-item">
-                        <a class="nav-link {% if request.endpoint == 'main.index' %}active{% endif %}" href="{{ url_for('main.index') }}">Beranda</a>
+                        <a class="nav-link nav-link-pill {% if request.endpoint == 'main.index' %}active{% endif %}" href="{{ url_for('main.index') }}">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.endpoint == 'main.about' %}active{% endif %}" href="{{ url_for('main.about') }}">Tentang</a>
+                        <a class="nav-link nav-link-pill {% if request.endpoint == 'main.about' %}active{% endif %}" href="{{ url_for('main.about') }}">Tentang</a>
                     </li>
                     <li class="nav-item">
                         <a class="btn btn-primary px-3" href="{{ url_for('main.predict') }}">Mulai Prediksi</a>
@@ -36,15 +42,15 @@
     </nav>
 
     <main class="page-content">
-        <div class="container py-5 animate-in">
+        <div class="container py-5 animate-in content-shell">
             {% block content %}{% endblock %}
         </div>
     </main>
 
     <footer class="footer py-4 mt-5">
         <div class="container d-flex flex-column flex-md-row justify-content-between gap-2 text-muted small">
-            <span>© 2026 MindCheck SRQ-29</span>
-            <span>Privasi dijaga: data tidak disimpan di database.</span>
+            <span>© 2026 Prisma Guard</span>
+            <span class="footer-note">Privasi dijaga: data tidak disimpan di database.</span>
         </div>
     </footer>
 

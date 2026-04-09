@@ -1,9 +1,22 @@
 :root {
     --telkom-red: #ed1c24;
-    --telkom-red-dark: #c8151b;
-    --charcoal: #333333;
+    --telkom-red-dark: #bd1219;
+    --telkom-red-soft: #ffebed;
+    --ink-900: #1f2430;
+    --charcoal: #2f3138;
+    --muted: #6d707b;
     --soft-bg: #f8f9fa;
-    --soft-line: #e8e8e8;
+    --soft-line: #e7e8ed;
+    --surface: #ffffff;
+    --radius-lg: 1rem;
+    --radius-md: 0.75rem;
+    --radius-sm: 0.5rem;
+    --shadow-soft: 0 14px 34px rgba(18, 20, 24, 0.07);
+    --shadow-red: 0 14px 28px rgba(237, 28, 36, 0.22);
+}
+
+* {
+    box-sizing: border-box;
 }
 
 html,
@@ -16,31 +29,150 @@ body {
     flex-direction: column;
     font-family: "Poppins", sans-serif;
     color: var(--charcoal);
+    line-height: 1.6;
     background:
-        radial-gradient(circle at 5% 0%, #fff4f4 0%, transparent 35%),
-        radial-gradient(circle at 90% 8%, #ffeff0 0%, transparent 35%),
+        radial-gradient(circle at 0% 0%, #ffeef0 0%, transparent 34%),
+        radial-gradient(circle at 100% 6%, #fff3f4 0%, transparent 30%),
+        radial-gradient(circle at 50% 100%, #f2f7ff 0%, transparent 35%),
         linear-gradient(180deg, #ffffff 0%, var(--soft-bg) 100%);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(to right, rgba(31, 36, 48, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(31, 36, 48, 0.02) 1px, transparent 1px);
+    background-size: 28px 28px;
+    z-index: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--ink-900);
+    letter-spacing: -0.02em;
+}
+
+p,
+li,
+small,
+.text-secondary {
+    color: var(--muted) !important;
 }
 
 .page-content {
     flex: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.content-shell {
+    max-width: 1180px;
+}
+
+.main-navbar {
+    border-bottom: 1px solid var(--soft-line);
+    background: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 10px 24px rgba(18, 20, 24, 0.04);
 }
 
 .brand-red {
     color: var(--telkom-red) !important;
 }
 
+.brand-lockup {
+    min-width: 0;
+}
+
+.brand-text-wrap {
+    display: inline-flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.brand-title {
+    font-size: 0.97rem;
+    font-weight: 700;
+    color: var(--ink-900);
+}
+
+.brand-subtitle {
+    margin-top: 0.18rem;
+    font-size: 0.67rem;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #8990a0;
+}
+
+.brand-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    color: #ffffff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    background: linear-gradient(135deg, var(--telkom-red) 0%, var(--telkom-red-dark) 100%);
+    box-shadow: 0 8px 18px rgba(237, 28, 36, 0.3);
+}
+
 .nav-link {
     color: #555555;
     font-weight: 500;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+.nav-link-pill {
+    border-radius: 999px;
+    padding: 0.45rem 0.92rem !important;
+    font-size: 0.92rem;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0.5rem;
+    right: 0.5rem;
+    bottom: 0.3rem;
+    height: 2px;
+    transform: scaleX(0);
+    transform-origin: center;
+    background: var(--telkom-red);
+    transition: transform 0.2s ease;
 }
 
 .nav-link:hover,
 .nav-link.active {
     color: var(--telkom-red) !important;
+    background-color: rgba(237, 28, 36, 0.08);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    transform: scaleX(1);
+}
+
+.card {
+    border: 1px solid var(--soft-line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    background: var(--surface);
 }
 
 .btn-primary {
+    background: linear-gradient(135deg, var(--telkom-red) 0%, var(--telkom-red-dark) 100%);
     --bs-btn-bg: var(--telkom-red);
     --bs-btn-border-color: var(--telkom-red);
     --bs-btn-hover-bg: var(--telkom-red-dark);
@@ -49,6 +181,15 @@ body {
     --bs-btn-active-border-color: var(--telkom-red-dark);
     --bs-btn-disabled-bg: var(--telkom-red);
     --bs-btn-disabled-border-color: var(--telkom-red);
+    font-weight: 600;
+    border-radius: 0.65rem;
+    box-shadow: 0 8px 16px rgba(237, 28, 36, 0.16);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-red);
 }
 
 .btn-outline-secondary {
@@ -57,11 +198,16 @@ body {
     --bs-btn-hover-bg: #f1f1f1;
     --bs-btn-hover-border-color: #a6a6a6;
     --bs-btn-hover-color: #333333;
+    border-radius: 0.65rem;
 }
 
 .footer {
     border-top: 1px solid var(--soft-line);
-    background-color: #ffffff;
+    background: linear-gradient(180deg, #ffffff 0%, #f7f8fb 100%);
+}
+
+.footer-note {
+    font-weight: 500;
 }
 
 .animate-in {
@@ -83,10 +229,53 @@ body {
 .form-control,
 .form-select {
     border-color: #d8d8d8;
+    border-radius: var(--radius-md);
+    min-height: 44px;
 }
 
 .form-control:focus,
 .form-select:focus {
     border-color: #f38e93;
     box-shadow: 0 0 0 0.2rem rgba(237, 28, 36, 0.16);
+}
+
+.section-title {
+    letter-spacing: -0.02em;
+    position: relative;
+}
+
+.section-title::after {
+    content: "";
+    display: block;
+    width: 52px;
+    height: 3px;
+    margin-top: 0.5rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--telkom-red) 0%, #ff6970 100%);
+}
+
+.badge {
+    border-radius: 999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animate-in,
+    .btn-primary,
+    .nav-link,
+    .nav-link::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .brand-subtitle {
+        display: none;
+    }
+
+    .main-navbar .navbar-collapse {
+        margin-top: 0.75rem;
+        padding-top: 0.75rem;
+        border-top: 1px solid var(--soft-line);
+    }
 }
