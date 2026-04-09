@@ -1,7 +1,5 @@
 from pathlib import Path
-
 from flask import Blueprint, jsonify, render_template, request
-
 from .constants import SRQ_QUESTIONS
 from .utils.parsers import parse_float_field, parse_gender_text, parse_int_field, parse_srq_answers
 from .handlers.predictor import PredictorService
@@ -11,7 +9,6 @@ main_bp = Blueprint("main", __name__)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 predictor_service = PredictorService(BASE_DIR / "models")
-
 
 def _build_student_data() -> dict[str, str]:
     return {
@@ -24,20 +21,16 @@ def _build_student_data() -> dict[str, str]:
         "ipk": request.form.get("ipk", "-"),
     }
 
-
 def _status_from_prediction(prediction: int) -> str:
     return "Perlu Perhatian" if prediction == 1 else "Aman"
-
 
 @main_bp.get("/")
 def index():
     return render_template("index.html")
 
-
 @main_bp.get("/about")
 def about():
     return render_template("about.html")
-
 
 @main_bp.get("/health")
 def health():
@@ -54,7 +47,6 @@ def health():
         ),
         503,
     )
-
 
 @main_bp.route("/predict", methods=["GET", "POST"])
 def predict():

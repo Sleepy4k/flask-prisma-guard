@@ -7,8 +7,8 @@ Type=simple
 User=www-data
 Group=www-data
 WorkingDirectory=/var/www/prisma-guard
-Environment="PATH=/var/www/prisma-guard/.venv/bin"
-ExecStart=/var/www/prisma-guard/.venv/bin/gunicorn --workers 3 --bind 127.0.0.1:8000 --access-logfile - --error-logfile - wsgi:app
+Environment="PATH=/var/www/prisma-guard/.venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/bin"
+ExecStart=/var/www/prisma-guard/.venv/bin/python -m gunicorn --workers 3 --bind 127.0.0.1:8000 --access-logfile - --error-logfile - wsgi:app
 ExecReload=/bin/kill -s HUP $MAINPID
 ExecStop=/bin/kill -s TERM $MAINPID
 Restart=always

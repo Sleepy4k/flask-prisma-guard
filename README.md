@@ -80,7 +80,7 @@ uv pip sync requirements.txt
 4. Uji Gunicorn manual:
 
 ```bash
-/var/www/prisma-guard/.venv/bin/gunicorn --workers 3 --bind 127.0.0.1:8000 wsgi:app
+/var/www/prisma-guard/.venv/bin/python -m gunicorn --workers 3 --bind 127.0.0.1:8000 wsgi:app
 ```
 
 5. Pasang systemd service:
@@ -139,3 +139,40 @@ Pastikan file berikut ada di folder `models`:
 - `scaler.pkl`
 - `pca.pkl`
 - `model_logistic_regression.pkl`
+
+### 3) systemd gagal start (status=203/EXEC)
+
+Error ini biasanya karena executable tidak ditemukan / tidak bisa dieksekusi oleh user service.
+
+Langkah cek cepat:
+
+```bash
+ls -lah /var/www/prisma-guard/.venv/bin/python
+sudo -u www-data /var/www/prisma-guard/.venv/bin/python -V
+sudo -u www-data /var/www/prisma-guard/.venv/bin/python -m gunicorn --version
+```
+
+Jika gagal, buat ulang environment di server:
+
+```bash
+cd /var/www/prisma-guard
+rm -rf .venv
+uv venv .venv
+uv pip sync requirements.txt
+```
+
+Pastikan permission folder bisa diakses `www-data`:
+
+```bash
+sudo chown -R www-data:www-data /var/www/prisma-guard
+sudo chmod -R u+rwX,go+rX /var/www/prisma-guard
+```
+
+Lalu reload service:
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart prisma-guard
+sudo systemctl status prisma-guard
+sudo journalctl -u prisma-guard -n 100 --no-pager
+```

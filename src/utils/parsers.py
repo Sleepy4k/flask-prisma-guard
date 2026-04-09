@@ -1,6 +1,5 @@
 from collections.abc import Mapping
 
-
 def parse_int_field(
     form: Mapping[str, str],
     field_name: str,
@@ -23,7 +22,6 @@ def parse_int_field(
         raise ValueError(f"{label} maksimal {max_value}.")
 
     return value
-
 
 def parse_float_field(
     form: Mapping[str, str],
@@ -48,7 +46,6 @@ def parse_float_field(
 
     return value
 
-
 def parse_srq_answers(form: Mapping[str, str], total_questions: int = 29) -> list[int]:
     answers: list[int] = []
 
@@ -59,7 +56,6 @@ def parse_srq_answers(form: Mapping[str, str], total_questions: int = 29) -> lis
         answers.append(int(value))
 
     return answers
-
 
 def parse_gender_text(gender_raw: str | None) -> str:
     if gender_raw == "1":

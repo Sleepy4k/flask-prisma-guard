@@ -1,9 +1,7 @@
 import os
 
 from pathlib import Path
-
 from flask import Flask, url_for
-
 from src import main_bp
 
 def create_app() -> Flask:

@@ -5,12 +5,10 @@ from typing import Any
 import joblib
 import pandas as pd
 
-
 @dataclass(frozen=True)
 class PredictorOutput:
     prediction: int
     probability: float
-
 
 class PredictorService:
     def __init__(self, models_dir: Path) -> None:
