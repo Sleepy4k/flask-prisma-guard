@@ -1,11 +1,31 @@
 .about-intro {
     border-left: 4px solid #ffd2d5;
     padding-left: 1rem;
+    position: relative;
+}
+
+.about-intro::before {
+    content: "";
+    position: absolute;
+    left: -4px;
+    top: 0;
+    width: 4px;
+    height: 55%;
+    background: linear-gradient(180deg, var(--telkom-red) 0%, #ff8e94 100%);
 }
 
 .enterprise-card {
     border: 1px solid #ebedf3 !important;
     background: linear-gradient(180deg, #ffffff 0%, #fcfcff 100%);
+    position: relative;
+}
+
+.enterprise-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(135deg, rgba(237, 28, 36, 0.03) 0%, transparent 32%);
 }
 
 .pipeline-list {
@@ -40,6 +60,10 @@
     padding: 0.9rem;
     background: linear-gradient(140deg, #fffdfd 0%, #fff5f6 100%);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-value + .stat-label {
+    margin-top: 0.2rem;
 }
 
 .stat-box:hover {

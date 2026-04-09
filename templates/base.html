@@ -13,7 +13,7 @@
     {% block head %}{% endblock %}
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top main-navbar">
+    <nav class="navbar navbar-expand-lg navbar-light main-navbar">
         <div class="container py-1">
             <a class="navbar-brand fw-bold brand-red d-flex align-items-center gap-2 brand-lockup" href="{{ url_for('main.index') }}">
                 <span class="brand-chip">PG</span>
@@ -47,9 +47,37 @@
         </div>
     </main>
 
-    <footer class="footer py-4 mt-5">
-        <div class="container d-flex flex-column flex-md-row justify-content-between gap-2 text-muted small">
-            <span>© 2026 Prisma Guard</span>
+    <footer class="footer">
+        <div class="footer-grid">
+            <section class="footer-block">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="brand-chip footer-chip">PG</span>
+                    <span class="footer-brand-title">Prisma Guard</span>
+                </div>
+                <p class="footer-description">Platform skrining awal kesehatan mental mahasiswa berbasis SRQ-29 dan model machine learning, tanpa penyimpanan data ke database.</p>
+            </section>
+
+            <section class="footer-block">
+                <h2 class="footer-heading">Quick Links</h2>
+                <ul class="footer-links">
+                    <li><a href="{{ url_for('main.index') }}">Beranda</a></li>
+                    <li><a href="{{ url_for('main.predict') }}">Mulai Prediksi</a></li>
+                    <li><a href="{{ url_for('main.about') }}">Tentang Metode</a></li>
+                </ul>
+            </section>
+
+            <section class="footer-block">
+                <h2 class="footer-heading">Keterangan</h2>
+                <ul class="footer-links">
+                    <li><span>Pemrosesan in-memory</span></li>
+                    <li><span>Tanpa riwayat penyimpanan</span></li>
+                    <li><span>Hasil bukan diagnosis klinis</span></li>
+                </ul>
+            </section>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 Prisma Guard. All rights reserved.</span>
             <span class="footer-note">Privasi dijaga: data tidak disimpan di database.</span>
         </div>
     </footer>

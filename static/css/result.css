@@ -1,6 +1,15 @@
 .result-shell .card {
     border: 1px solid #eaecf3 !important;
     background: linear-gradient(180deg, #ffffff 0%, #fdfdff 100%);
+    position: relative;
+}
+
+.result-shell .card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(125deg, rgba(237, 28, 36, 0.03) 0%, transparent 36%);
 }
 
 .result-banner {
@@ -98,11 +107,13 @@
     border-radius: 0.7rem;
     background-color: #ffffff;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-left: 3px solid transparent;
 }
 
 .recommendation-list li:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 18px rgba(18, 20, 24, 0.08);
+    border-left-color: var(--telkom-red);
 }
 
 .recommendation-list li::before {

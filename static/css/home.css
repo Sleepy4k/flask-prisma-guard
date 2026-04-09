@@ -8,6 +8,10 @@
     box-shadow: 0 24px 44px rgba(18, 20, 24, 0.09);
 }
 
+.enterprise-hero {
+    isolation: isolate;
+}
+
 .hero-panel::before {
     content: "";
     position: absolute;
@@ -32,13 +36,24 @@
     pointer-events: none;
 }
 
+.enterprise-hero .row {
+    position: relative;
+    z-index: 2;
+}
+
+.enterprise-hero::selection {
+    background: rgba(237, 28, 36, 0.18);
+}
+
 .hero-eyebrow {
     font-weight: 600;
     letter-spacing: 0.02em;
+    background: #fff9fa !important;
 }
 
 .hero-title {
     max-width: 18ch;
+    line-height: 1.08;
 }
 
 .hero-panel .lead {
@@ -57,6 +72,18 @@
     box-shadow:
         inset 0 1px 0 rgba(255, 255, 255, 0.6),
         0 14px 24px rgba(18, 20, 24, 0.06);
+    position: relative;
+}
+
+.glass-card::after {
+    content: "";
+    position: absolute;
+    inset: auto -40px -70px auto;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(237, 28, 36, 0.14) 0%, transparent 70%);
+    pointer-events: none;
 }
 
 .trust-metrics {
@@ -90,6 +117,21 @@
     border: 1px solid #eaecf3;
     border-top: 4px solid transparent;
     background: linear-gradient(180deg, #ffffff 0%, #fcfcff 100%);
+    position: relative;
+}
+
+.step-card::after {
+    content: "";
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    bottom: 0;
+    height: 3px;
+    border-radius: 999px;
+    transform: scaleX(0.35);
+    opacity: 0;
+    background: linear-gradient(90deg, rgba(237, 28, 36, 0.9) 0%, rgba(255, 109, 116, 0.7) 100%);
+    transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .step-card:hover {
@@ -97,6 +139,11 @@
     border-color: #ffd0d3;
     border-top-color: var(--telkom-red);
     box-shadow: 0 14px 30px rgba(237, 28, 36, 0.15) !important;
+}
+
+.step-card:hover::after {
+    opacity: 1;
+    transform: scaleX(1);
 }
 
 .step-index {
@@ -110,6 +157,15 @@
     border: 1px solid #eaecf3;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(253, 253, 255, 0.95) 100%);
     box-shadow: 0 16px 30px rgba(18, 20, 24, 0.05);
+    position: relative;
+}
+
+.faq-shell::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(130deg, rgba(237, 28, 36, 0.045) 0%, transparent 35%);
 }
 
 .accordion-button:not(.collapsed) {
@@ -129,6 +185,10 @@
 
 .accordion-item + .accordion-item {
     margin-top: 0.7rem;
+}
+
+.accordion-button {
+    font-weight: 600;
 }
 
 @media (max-width: 576px) {
