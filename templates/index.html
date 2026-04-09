@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% block title %}Beranda | MindCheck SRQ-29{% endblock %}
+{% block page_styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="hero-panel rounded-4 p-4 p-lg-5 mb-5">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+            <span class="badge text-bg-light border border-danger-subtle text-danger mb-3">Screening Kesehatan Mental Mahasiswa</span>
+            <h1 class="display-6 fw-bold mb-3">Deteksi Dini Risiko Kesehatan Mental dengan SRQ-29</h1>
+            <p class="lead text-secondary mb-4">Isi data singkat dan kuesioner SRQ-29 untuk mendapatkan prediksi awal berbasis model Machine Learning Logistic Regression.</p>
+            <a href="{{ url_for('main.predict') }}" class="btn btn-primary btn-lg px-4">Mulai Prediksi</a>
+        </div>
+        <div class="col-lg-5">
+            <div class="glass-card p-4 h-100">
+                <h2 class="h5 fw-semibold mb-3">Kenapa MindCheck?</h2>
+                <ul class="mb-0 ps-3 text-secondary">
+                    <li>Proses cepat, sekitar 3-5 menit.</li>
+                    <li>Input berbasis SRQ-29 + data demografis.</li>
+                    <li>Hasil probabilitas disertai rekomendasi awal.</li>
+                    <li>Tidak menyimpan data pengguna ke database.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mb-5">
+    <h2 class="h3 fw-bold mb-4">Cara Kerja</h2>
+    <div class="row g-3">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm step-card">
+                <div class="card-body">
+                    <span class="step-index">01</span>
+                    <h3 class="h5 mt-3">Isi Data Mahasiswa</h3>
+                    <p class="text-secondary mb-0">Masukkan identitas akademik dasar seperti usia, semester, dan IPK.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm step-card">
+                <div class="card-body">
+                    <span class="step-index">02</span>
+                    <h3 class="h5 mt-3">Jawab Kuesioner SRQ-29</h3>
+                    <p class="text-secondary mb-0">Jawab 29 pertanyaan dengan jujur untuk gambaran kondisi saat ini.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm step-card">
+                <div class="card-body">
+                    <span class="step-index">03</span>
+                    <h3 class="h5 mt-3">Lihat Hasil Prediksi</h3>
+                    <p class="text-secondary mb-0">Sistem menampilkan status awal dan rekomendasi tindak lanjut yang relevan.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2 class="h3 fw-bold mb-4">FAQ</h2>
+    <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+            <h3 class="accordion-header" id="faqOneHeader">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne" aria-expanded="true" aria-controls="faqOne">
+                    Apa tujuan sistem ini?
+                </button>
+            </h3>
+            <div id="faqOne" class="accordion-collapse collapse show" aria-labelledby="faqOneHeader" data-bs-parent="#faqAccordion">
+                <div class="accordion-body text-secondary">Sistem ini ditujukan sebagai alat skrining dini untuk membantu mahasiswa mengenali indikasi awal gangguan kesehatan mental.</div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h3 class="accordion-header" id="faqTwoHeader">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo" aria-expanded="false" aria-controls="faqTwo">
+                    Apakah hasil ini adalah diagnosis medis?
+                </button>
+            </h3>
+            <div id="faqTwo" class="accordion-collapse collapse" aria-labelledby="faqTwoHeader" data-bs-parent="#faqAccordion">
+                <div class="accordion-body text-secondary">Bukan. Hasil hanya prediksi awal berbasis model statistik. Untuk diagnosis, tetap konsultasikan ke psikolog atau psikiater.</div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h3 class="accordion-header" id="faqThreeHeader">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqThree" aria-expanded="false" aria-controls="faqThree">
+                    Apakah data saya disimpan?
+                </button>
+            </h3>
+            <div id="faqThree" class="accordion-collapse collapse" aria-labelledby="faqThreeHeader" data-bs-parent="#faqAccordion">
+                <div class="accordion-body text-secondary">Tidak. Sesuai desain sistem ini, semua pemrosesan dilakukan secara in-memory dan tidak ada penyimpanan ke database.</div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h3 class="accordion-header" id="faqFourHeader">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFour" aria-expanded="false" aria-controls="faqFour">
+                    Siapa yang sebaiknya menggunakan alat ini?
+                </button>
+            </h3>
+            <div id="faqFour" class="accordion-collapse collapse" aria-labelledby="faqFourHeader" data-bs-parent="#faqAccordion">
+                <div class="accordion-body text-secondary">Mahasiswa yang ingin melakukan self-check awal terkait kondisi psikologis untuk meningkatkan kewaspadaan dan mencari bantuan lebih awal.</div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

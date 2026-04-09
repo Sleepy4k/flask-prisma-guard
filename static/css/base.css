@@ -1,0 +1,92 @@
+:root {
+    --telkom-red: #ed1c24;
+    --telkom-red-dark: #c8151b;
+    --charcoal: #333333;
+    --soft-bg: #f8f9fa;
+    --soft-line: #e8e8e8;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: "Poppins", sans-serif;
+    color: var(--charcoal);
+    background:
+        radial-gradient(circle at 5% 0%, #fff4f4 0%, transparent 35%),
+        radial-gradient(circle at 90% 8%, #ffeff0 0%, transparent 35%),
+        linear-gradient(180deg, #ffffff 0%, var(--soft-bg) 100%);
+}
+
+.page-content {
+    flex: 1;
+}
+
+.brand-red {
+    color: var(--telkom-red) !important;
+}
+
+.nav-link {
+    color: #555555;
+    font-weight: 500;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--telkom-red) !important;
+}
+
+.btn-primary {
+    --bs-btn-bg: var(--telkom-red);
+    --bs-btn-border-color: var(--telkom-red);
+    --bs-btn-hover-bg: var(--telkom-red-dark);
+    --bs-btn-hover-border-color: var(--telkom-red-dark);
+    --bs-btn-active-bg: var(--telkom-red-dark);
+    --bs-btn-active-border-color: var(--telkom-red-dark);
+    --bs-btn-disabled-bg: var(--telkom-red);
+    --bs-btn-disabled-border-color: var(--telkom-red);
+}
+
+.btn-outline-secondary {
+    --bs-btn-color: #4f4f4f;
+    --bs-btn-border-color: #b8b8b8;
+    --bs-btn-hover-bg: #f1f1f1;
+    --bs-btn-hover-border-color: #a6a6a6;
+    --bs-btn-hover-color: #333333;
+}
+
+.footer {
+    border-top: 1px solid var(--soft-line);
+    background-color: #ffffff;
+}
+
+.animate-in {
+    animation: fade-slide-in 0.45s ease both;
+}
+
+@keyframes fade-slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-control,
+.form-select {
+    border-color: #d8d8d8;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #f38e93;
+    box-shadow: 0 0 0 0.2rem rgba(237, 28, 36, 0.16);
+}

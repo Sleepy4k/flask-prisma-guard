@@ -1,0 +1,13 @@
+[project]
+name = "flask-prisma-guard"
+version = "0.1.0"
+description = "Mental health screening web app using Flask and SRQ-29"
+readme = "README.md"
+requires-python = ">=3.10,<3.14"
+dependencies = [
+	"flask>=3.0.3,<4.0.0",
+	"gunicorn>=22.0.0,<23.0.0",
+	"joblib>=1.4.2,<2.0.0",
+	"pandas>=2.2.2,<3.0.0",
+	"scikit-learn==1.6.1",
+]

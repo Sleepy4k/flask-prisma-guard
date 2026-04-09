@@ -1,0 +1,18 @@
+.stat-box {
+    border: 1px solid #ffd9dc;
+    border-radius: 0.75rem;
+    padding: 0.9rem;
+    background-color: #fff9f9;
+}
+
+.stat-value {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--telkom-red);
+    line-height: 1.1;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: #666666;
+}

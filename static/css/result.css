@@ -1,0 +1,66 @@
+.result-banner {
+    border: 1px solid #ffe0e2;
+    background: linear-gradient(120deg, #ffffff 0%, #fff6f7 100%);
+    border-radius: 1rem;
+    padding: 1.2rem;
+}
+
+.status-pill {
+    display: inline-block;
+    padding: 0.45rem 0.8rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.status-safe {
+    background-color: #e7f8ed;
+    color: #247a41;
+}
+
+.status-alert {
+    background-color: #fff2da;
+    color: #9a6100;
+}
+
+.status-error {
+    background-color: #ffe6e8;
+    color: #a0151b;
+}
+
+.result-progress {
+    height: 12px;
+    border-radius: 999px;
+}
+
+.recommendation-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.recommendation-list li {
+    position: relative;
+    padding: 0.75rem 0.85rem 0.75rem 2rem;
+    margin-bottom: 0.6rem;
+    border: 1px solid #f3e0e1;
+    border-radius: 0.7rem;
+    background-color: #ffffff;
+}
+
+.recommendation-list li::before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    left: 0.8rem;
+    top: 1rem;
+    background-color: var(--telkom-red);
+}
+
+.recommendation-meta {
+    margin-bottom: 0.2rem;
+    color: #6d6d6d;
+    font-size: 0.8rem;
+}

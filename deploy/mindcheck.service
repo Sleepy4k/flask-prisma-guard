@@ -1,0 +1,18 @@
+[Unit]
+Description=MindCheck Flask Gunicorn Service
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/flask-prisma-guard
+Environment="PATH=/opt/flask-prisma-guard/.venv/bin"
+ExecStart=/opt/flask-prisma-guard/.venv/bin/gunicorn -c gunicorn.conf.py wsgi:app
+Restart=always
+RestartSec=5
+TimeoutStopSec=30
+KillSignal=SIGTERM
+
+[Install]
+WantedBy=multi-user.target
