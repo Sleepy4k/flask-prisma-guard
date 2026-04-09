@@ -135,26 +135,31 @@ a {
     position: sticky;
     top: 0;
     z-index: 1030;
-    padding: 0.5rem 0.75rem 0;
+    padding: 0.65rem 0.9rem 0;
     background: transparent !important;
 }
 
 .main-navbar .container {
     max-width: var(--site-max-width);
     border: 1px solid rgba(227, 233, 244, 0.98);
-    border-radius: 0.95rem;
+    border-radius: 1.1rem;
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.92) 0%, rgba(247, 250, 255, 0.88) 100%);
     backdrop-filter: blur(10px) saturate(128%);
-    box-shadow: 0 9px 18px rgba(21, 28, 40, 0.07);
-    padding-inline: 0.9rem;
+    box-shadow: 0 12px 24px rgba(21, 28, 40, 0.08);
+    padding-block: 0.35rem;
+    padding-inline: 1.25rem;
 }
 
 .main-navbar .navbar-brand {
-    padding-block: 0.2rem;
+    padding-block: 0.3rem;
 }
 
 .main-navbar .navbar-collapse {
     align-items: center;
+}
+
+.main-navbar .navbar-nav {
+    gap: 0.3rem;
 }
 
 .brand-red {
@@ -172,14 +177,14 @@ a {
 }
 
 .brand-title {
-    font-size: 0.97rem;
+    font-size: 1.02rem;
     font-weight: 700;
     color: var(--ink-900);
 }
 
 .brand-subtitle {
     margin-top: 0.18rem;
-    font-size: 0.66rem;
+    font-size: 0.68rem;
     letter-spacing: 0.06em;
     font-weight: 600;
     text-transform: uppercase;
@@ -190,11 +195,11 @@ a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2rem;
-    height: 2rem;
+    width: 2.1rem;
+    height: 2.1rem;
     border-radius: 999px;
     color: #ffffff;
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 0.04em;
     background: linear-gradient(135deg, var(--telkom-red) 0%, var(--telkom-red-dark) 100%);
@@ -210,8 +215,8 @@ a {
 
 .nav-link-pill {
     border-radius: 999px;
-    padding: 0.44rem 0.92rem !important;
-    font-size: 0.9rem;
+    padding: 0.5rem 1.06rem !important;
+    font-size: 0.93rem;
     border: 1px solid transparent;
     background: rgba(255, 255, 255, 0.7);
     overflow: hidden;
@@ -272,8 +277,8 @@ a {
 
 .main-navbar .navbar-nav .btn-primary {
     border-radius: 999px;
-    min-height: 40px;
-    padding-inline: 1rem;
+    min-height: 44px;
+    padding-inline: 1.15rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -352,18 +357,18 @@ a {
 
 .footer {
     width: min(var(--site-max-width), calc(100% - 1.5rem));
-    margin: 1.15rem auto 0.75rem;
+    margin: 1.35rem auto 0.9rem;
     border: 1px solid rgba(227, 233, 244, 0.96);
     border-radius: 1rem;
     background: linear-gradient(165deg, rgba(255, 255, 255, 0.95) 0%, rgba(247, 250, 255, 0.92) 100%);
     box-shadow: 0 10px 24px rgba(21, 28, 40, 0.07);
-    padding: 1.1rem 1.25rem 0.9rem;
+    padding: 1.45rem 1.6rem 1.2rem;
 }
 
 .footer-grid {
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr;
-    gap: 1rem 1.35rem;
+    gap: 1.35rem 1.9rem;
 }
 
 .footer-block {
@@ -384,8 +389,8 @@ a {
 
 .footer-description {
     margin: 0;
-    font-size: 0.82rem;
-    line-height: 1.65;
+    font-size: 0.84rem;
+    line-height: 1.72;
 }
 
 .footer-heading {
@@ -394,7 +399,7 @@ a {
     color: #70798b;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    margin-bottom: 0.55rem;
+    margin-bottom: 0.72rem;
 }
 
 .footer-links {
@@ -404,7 +409,7 @@ a {
 }
 
 .footer-links li + li {
-    margin-top: 0.4rem;
+    margin-top: 0.55rem;
 }
 
 .footer-links a,
@@ -418,15 +423,15 @@ a {
 }
 
 .footer-bottom {
-    margin-top: 0.95rem;
-    padding-top: 0.85rem;
+    margin-top: 1.2rem;
+    padding-top: 1rem;
     border-top: 1px solid #e7ebf3;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 0.6rem;
+    gap: 0.9rem;
     color: #8a92a2;
-    font-size: 0.77rem;
+    font-size: 0.79rem;
 }
 
 .footer-note {
@@ -445,7 +450,7 @@ a {
 
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: none;
     }
 }
 
@@ -461,8 +466,8 @@ a {
 
 @media (max-width: 991.98px) {
     .main-navbar {
-        padding-top: 0.45rem;
-        padding-inline: 0.5rem;
+        padding-top: 0.5rem;
+        padding-inline: 0.6rem;
     }
 
     .brand-subtitle {
@@ -470,17 +475,18 @@ a {
     }
 
     .main-navbar .container {
-        padding-inline: 0.75rem;
+        padding-block: 0.28rem;
+        padding-inline: 0.95rem;
     }
 
     .main-navbar .navbar-collapse {
-        margin-top: 0.65rem;
-        padding-top: 0.65rem;
+        margin-top: 0.8rem;
+        padding-top: 0.75rem;
         border-top: 1px solid #eceff5;
     }
 
     .main-navbar .navbar-nav {
-        gap: 0.45rem;
+        gap: 0.55rem;
     }
 
     .main-navbar .nav-link-pill {
@@ -494,11 +500,13 @@ a {
 
     .footer {
         width: calc(100% - 1rem);
-        margin-top: 0.95rem;
+        margin-top: 1.1rem;
+        padding: 1.25rem 1.2rem 1rem;
     }
 
     .footer-grid {
         grid-template-columns: 1fr 1fr;
+        gap: 1.1rem 1.45rem;
     }
 }
 
@@ -513,7 +521,8 @@ a {
     }
 
     .main-navbar .container {
-        border-radius: 0.85rem;
+        border-radius: 0.9rem;
+        padding-inline: 0.82rem;
     }
 
     .brand-title {
@@ -521,17 +530,18 @@ a {
     }
 
     .footer {
-        padding: 1rem 0.95rem 0.85rem;
-        margin-top: 0.8rem;
+        padding: 1.15rem 1.05rem 0.95rem;
+        margin-top: 0.9rem;
     }
 
     .footer-grid {
         grid-template-columns: 1fr;
-        gap: 0.85rem;
+        gap: 1rem;
     }
 
     .footer-bottom {
         flex-direction: column;
         align-items: flex-start;
+        gap: 0.45rem;
     }
 }

@@ -143,17 +143,23 @@
 }
 
 #confirmSubmitModal {
-    --bs-modal-zindex: 1085;
+    --bs-modal-zindex: 1090;
+    z-index: 1090;
 }
 
 .modal-backdrop {
     --bs-backdrop-zindex: 1080;
     --bs-backdrop-bg: #111827;
     --bs-backdrop-opacity: 0.34;
+    z-index: 1080;
 }
 
 .modal-backdrop.show {
     backdrop-filter: blur(3px);
+}
+
+.modal-open .content-shell-wrap {
+    transform: none !important;
 }
 
 #confirmSubmitModal .modal-dialog {
