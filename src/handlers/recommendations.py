@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from .constants import (
+from ..constants import (
     FALLBACK_RECOMMENDATIONS_ALERT,
     FALLBACK_RECOMMENDATIONS_SAFE,
     SRQ_QUESTIONS,

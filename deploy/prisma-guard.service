@@ -1,18 +1,16 @@
 [Unit]
-Description=Prisma Guard Flask Gunicorn Service
+Description=Prisma Guard Gunicorn Service
 After=network.target
 
 [Service]
 Type=simple
 User=www-data
 Group=www-data
-WorkingDirectory=/opt/flask-prisma-guard
-Environment="PATH=/opt/flask-prisma-guard/.venv/bin"
-ExecStart=/opt/flask-prisma-guard/.venv/bin/gunicorn -c gunicorn.conf.py wsgi:app
+WorkingDirectory=/var/www/prisma-guard
+Environment="PATH=/var/www/prisma-guard/.venv/bin"
+ExecStart=/var/www/prisma-guard/.venv/bin/gunicorn --workers 3 --bind 127.0.0.1:8000 --access-logfile - --error-logfile - wsgi:app
 Restart=always
 RestartSec=5
-TimeoutStopSec=30
-KillSignal=SIGTERM
 
 [Install]
 WantedBy=multi-user.target

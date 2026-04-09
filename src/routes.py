@@ -3,9 +3,9 @@ from pathlib import Path
 from flask import Blueprint, jsonify, render_template, request
 
 from .constants import SRQ_QUESTIONS
-from .parsers import parse_float_field, parse_gender_text, parse_int_field, parse_srq_answers
-from .predictor import PredictorService
-from .recommendations import fallback_recommendations, recommendations_from_answers
+from .utils.parsers import parse_float_field, parse_gender_text, parse_int_field, parse_srq_answers
+from .handlers.predictor import PredictorService
+from .handlers.recommendations import fallback_recommendations, recommendations_from_answers
 
 main_bp = Blueprint("main", __name__)
 

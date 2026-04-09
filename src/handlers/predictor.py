@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 import joblib
 import pandas as pd
@@ -14,9 +15,9 @@ class PredictorOutput:
 class PredictorService:
     def __init__(self, models_dir: Path) -> None:
         self._models_dir = models_dir
-        self._scaler = None
-        self._pca = None
-        self._model = None
+        self._scaler: Any = None
+        self._pca: Any = None
+        self._model: Any = None
         self._load_error = ""
         self._models_loaded = False
         self._load_models()
@@ -52,17 +53,24 @@ class PredictorService:
         if not self._models_loaded:
             raise RuntimeError("Model belum siap digunakan.")
 
+        if self._scaler is None or self._pca is None or self._model is None:
+            raise RuntimeError("Komponen model belum lengkap.")
+
         if len(srq_answers) != 29:
             raise ValueError("Jumlah jawaban SRQ harus 29.")
+
+        scaler = self._scaler
+        pca = self._pca
+        model = self._model
 
         input_data = [gender, usia, semester, ipk] + srq_answers
         feature_names = ["Gender", "Usia", "Semester", "IPK"] + [f"SRQ{i}" for i in range(1, 30)]
         df_input = pd.DataFrame([input_data], columns=feature_names)
 
-        input_scaled = self._scaler.transform(df_input)
-        input_pca = self._pca.transform(input_scaled)
+        input_scaled = scaler.transform(df_input)
+        input_pca = pca.transform(input_scaled)
 
-        prediction = int(self._model.predict(input_pca)[0])
-        probability = round(float(self._model.predict_proba(input_pca)[0][1]) * 100, 2)
+        prediction = int(model.predict(input_pca)[0])
+        probability = round(float(model.predict_proba(input_pca)[0][1]) * 100, 2)
 
         return PredictorOutput(prediction=prediction, probability=probability)

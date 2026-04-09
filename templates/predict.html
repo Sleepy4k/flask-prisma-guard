@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Prediksi | Prisma Guard{% endblock %}
 {% block page_styles %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/predict.css') }}">
+<link rel="stylesheet" href="{{ asset_url('css/predict.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -171,5 +171,5 @@
 {% endblock %}
 
 {% block page_scripts %}
-<script src="{{ url_for('static', filename='js/predict-form.js') }}" defer></script>
+<script src="{{ asset_url('js/predict-form.js') }}" defer></script>
 {% endblock %}

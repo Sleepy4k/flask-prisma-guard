@@ -1,143 +1,141 @@
 # Prisma Guard
 
-Prisma Guard adalah web app skrining kesehatan mental mahasiswa berbasis SRQ-29 dengan model Logistic Regression (Scaler + PCA).
+Prisma Guard adalah web app skrining awal kesehatan mental mahasiswa menggunakan SRQ-29 dan model Logistic Regression (Scaler + PCA).
 
-Versi Python yang didukung: 3.10 hingga 3.13.
+## Ringkas Fitur
 
-## Fitur Utama
+- Tanpa database (in-memory processing).
+- Form prediksi 4 langkah.
+- Hasil status + probabilitas + rekomendasi.
+- Struktur kode sederhana: app entrypoint + modul di folder src.
 
-- Tidak menggunakan database (semua pemrosesan in-memory).
-- Form prediksi 4 langkah dengan validasi real-time.
-- Rekomendasi berbasis jawaban SRQ:
-  - Tersedia 29 rekomendasi terpisah (1 rekomendasi untuk setiap pertanyaan SRQ).
-  - Jika jawaban SRQ ke-n adalah Ya, maka rekomendasi ke-n ditampilkan.
-- Arsitektur modular agar mudah maintenance.
-- Asset frontend dipisah per halaman (CSS/JS tidak dimuat global jika tidak dibutuhkan).
+## Persyaratan
 
-## Struktur Project
+- Python 3.10 - 3.13
+- uv
 
-app.py
-gunicorn.conf.py
-wsgi.py
-pyproject.toml
-requirements.txt
-mental_health_app/
-templates/
-static/
-deploy/
+## Instalasi Lokal
 
-### Rincian Modul Backend
-
-- mental_health_app/__init__.py: app factory.
-- mental_health_app/routes.py: route handler.
-- mental_health_app/predictor.py: loading model global + inferensi.
-- mental_health_app/parsers.py: parsing dan validasi field request.
-- mental_health_app/constants.py: daftar SRQ dan rekomendasi.
-- mental_health_app/recommendations.py: pemetaan jawaban SRQ -> rekomendasi.
-
-## Menjalankan Lokal (Windows/Linux)
-
-1. Install uv.
+1. Clone project dan masuk ke folder project.
 2. Buat virtual environment:
 
-	uv venv .venv
+```bash
+uv venv .venv
+```
 
-3. Install dependency dari requirements:
+3. Install dependency:
 
-	uv pip sync requirements.txt
+```bash
+uv pip sync requirements.txt
+```
 
 4. Jalankan aplikasi:
 
-	.venv/Scripts/python.exe app.py
+Windows:
 
-	Untuk Linux:
+```bash
+.venv\Scripts\python.exe app.py
+```
 
-	.venv/bin/python app.py
+Linux/macOS:
 
-5. Buka:
+```bash
+.venv/bin/python app.py
+```
 
-	http://127.0.0.1:5000
+5. Buka aplikasi di:
 
-## Generate requirements.txt dengan uv
+```text
+http://127.0.0.1:3000
+```
 
-File requirements.txt dibuat dari pyproject.toml dengan perintah:
+## Deploy Production (Ubuntu 22.04)
 
-uv pip compile pyproject.toml -o requirements.txt
+Target path hosting:
 
-## Health Check
+```text
+/var/www/prisma-guard
+```
 
-Endpoint health check tersedia di:
+1. Install dependency sistem:
 
-GET /health
-
-## Deployment Ready Ubuntu 22.04
-
-Langkah berikut diasumsikan domain sudah diarahkan ke server.
-
-### 1) Install paket sistem
-
+```bash
 sudo apt update
 sudo apt install -y python3 python3-venv nginx
+```
 
-### 2) Clone project
+2. Copy project ke server di path target, lalu masuk folder project:
 
-sudo mkdir -p /opt/flask-prisma-guard
-sudo chown -R $USER:$USER /opt/flask-prisma-guard
-cd /opt/flask-prisma-guard
+```bash
+cd /var/www/prisma-guard
+```
 
-### 3) Install uv dan dependency project
+3. Setup uv + environment + dependency:
 
-curl -LsSf https://astral.sh/uv/install.sh | sh
-source $HOME/.cargo/env
-
+```bash
 uv venv .venv
 uv pip sync requirements.txt
+```
 
-### 4) Jalankan dengan Gunicorn (uji manual)
+4. Uji Gunicorn manual:
 
-.venv/bin/gunicorn -c gunicorn.conf.py wsgi:app
+```bash
+/var/www/prisma-guard/.venv/bin/gunicorn --workers 3 --bind 127.0.0.1:8000 wsgi:app
+```
 
-Jika sukses, aplikasi siap dipasang sebagai service.
+5. Pasang systemd service:
 
-### 5) Setup systemd service
-
-Salin file service:
-
+```bash
 sudo cp deploy/prisma-guard.service /etc/systemd/system/prisma-guard.service
-
-Pastikan path pada file service sesuai:
-
-- WorkingDirectory=/opt/flask-prisma-guard
-- PATH=/opt/flask-prisma-guard/.venv/bin
-
-Aktifkan service:
-
 sudo systemctl daemon-reload
 sudo systemctl enable prisma-guard
 sudo systemctl restart prisma-guard
 sudo systemctl status prisma-guard
+```
 
-### 6) Setup Nginx reverse proxy
+6. Pasang Nginx reverse proxy:
 
-Salin config nginx:
-
+```bash
 sudo cp deploy/prisma-guard.nginx.conf /etc/nginx/sites-available/prisma-guard
 sudo ln -s /etc/nginx/sites-available/prisma-guard /etc/nginx/sites-enabled/prisma-guard
-
-Edit server_name pada file Nginx sesuai domain.
-
-Uji dan reload nginx:
-
 sudo nginx -t
 sudo systemctl reload nginx
+```
 
-### 7) Aktifkan HTTPS (opsional, direkomendasikan)
+7. (Opsional) Aktifkan HTTPS:
 
+```bash
 sudo apt install -y certbot python3-certbot-nginx
 sudo certbot --nginx -d your-domain.com
+```
 
-## Catatan Model
+## Catatan Penting Perubahan UI di Production
 
-- Model pickle dilatih dengan scikit-learn 1.6.1.
-- Versi scikit-learn dipin ke 1.6.1 pada pyproject untuk menjaga kompatibilitas loading model di production.
-- Untuk menghindari masalah build dependency, gunakan Python 3.10-3.13 di server Ubuntu 22.
+Project ini sudah memakai versioned static asset URL (`?v=<mtime>`). Jadi saat file CSS/JS berubah, browser akan mengambil versi baru.
+
+Jika perubahan navbar/footer belum terlihat:
+
+1. Pastikan deploy file terbaru sudah benar.
+2. Restart service app (Gunicorn/systemd).
+3. Hard refresh browser (`Ctrl+F5`).
+4. Jika ada CDN/proxy cache, lakukan purge cache.
+
+## Troubleshooting
+
+### 1) ImportError: attempted relative import with no known parent package
+
+Jalankan aplikasi langsung dari root project dengan:
+
+```bash
+python app.py
+```
+
+Kode app sudah disesuaikan agar menggunakan import package yang aman untuk mode ini.
+
+### 2) Model tidak bisa dimuat
+
+Pastikan file berikut ada di folder `models`:
+
+- `scaler.pkl`
+- `pca.pkl`
+- `model_logistic_regression.pkl`
