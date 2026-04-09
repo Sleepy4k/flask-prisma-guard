@@ -119,18 +119,23 @@ a {
 .page-content {
     flex: 1;
     position: relative;
-    padding-top: 0.85rem;
+    padding-top: 0.45rem;
 }
 
 .content-shell {
     max-width: var(--site-max-width);
 }
 
+.content-shell-wrap {
+    padding-top: 1.15rem;
+    padding-bottom: 0.95rem;
+}
+
 .main-navbar {
     position: sticky;
     top: 0;
     z-index: 1030;
-    padding: 0.7rem 0.75rem 0;
+    padding: 0.5rem 0.75rem 0;
     background: transparent !important;
 }
 
@@ -209,6 +214,7 @@ a {
     font-size: 0.9rem;
     border: 1px solid transparent;
     background: rgba(255, 255, 255, 0.7);
+    overflow: hidden;
 }
 
 .nav-link::after {
@@ -222,23 +228,35 @@ a {
     transform-origin: center;
     border-radius: 999px;
     background: var(--telkom-red);
-    transition: transform 0.2s ease;
+    opacity: 0.9;
+    transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-.nav-link:hover,
-.nav-link.active {
+.nav-link:hover {
     color: var(--telkom-red) !important;
     border-color: rgba(237, 28, 36, 0.2);
     background-color: rgba(255, 255, 255, 0.92);
 }
 
-.nav-link.active {
-    box-shadow: 0 8px 15px rgba(237, 28, 36, 0.12);
+.nav-link-pill.active {
+    color: #ffffff !important;
+    border-color: transparent;
+    background: linear-gradient(135deg, var(--telkom-red) 0%, #ff6169 100%);
+    box-shadow: 0 9px 16px rgba(237, 28, 36, 0.28);
 }
 
-.nav-link:hover::after,
-.nav-link.active::after {
+.nav-link:hover::after {
     transform: scaleX(1);
+}
+
+.nav-link-pill.active::after {
+    transform: scaleX(0);
+    opacity: 0;
+}
+
+.nav-link:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 0.16rem rgba(237, 28, 36, 0.22);
 }
 
 .navbar-toggler {
@@ -334,7 +352,7 @@ a {
 
 .footer {
     width: min(var(--site-max-width), calc(100% - 1.5rem));
-    margin: 2rem auto 1rem;
+    margin: 1.15rem auto 0.75rem;
     border: 1px solid rgba(227, 233, 244, 0.96);
     border-radius: 1rem;
     background: linear-gradient(165deg, rgba(255, 255, 255, 0.95) 0%, rgba(247, 250, 255, 0.92) 100%);
@@ -443,7 +461,7 @@ a {
 
 @media (max-width: 991.98px) {
     .main-navbar {
-        padding-top: 0.55rem;
+        padding-top: 0.45rem;
         padding-inline: 0.5rem;
     }
 
@@ -476,6 +494,7 @@ a {
 
     .footer {
         width: calc(100% - 1rem);
+        margin-top: 0.95rem;
     }
 
     .footer-grid {
@@ -485,7 +504,12 @@ a {
 
 @media (max-width: 575.98px) {
     .page-content {
-        padding-top: 0.6rem;
+        padding-top: 0.3rem;
+    }
+
+    .content-shell-wrap {
+        padding-top: 0.9rem;
+        padding-bottom: 0.7rem;
     }
 
     .main-navbar .container {
@@ -498,6 +522,7 @@ a {
 
     .footer {
         padding: 1rem 0.95rem 0.85rem;
+        margin-top: 0.8rem;
     }
 
     .footer-grid {
