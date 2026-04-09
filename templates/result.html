@@ -1,75 +1,79 @@
 {% extends 'base.html' %}
 {% block title %}Hasil Prediksi | Prisma Guard{% endblock %}
+{% block meta_description %}Lihat hasil skrining awal kesehatan mental mahasiswa dari Prisma Guard beserta probabilitas dan rekomendasi tindak lanjut.{% endblock %}
+{% block og_description %}Halaman hasil prediksi Prisma Guard menampilkan status skrining awal, probabilitas, dan rekomendasi sesuai jawaban SRQ-29.{% endblock %}
 {% block page_styles %}
 <link rel="stylesheet" href="{{ asset_url('css/result.css') }}">
 {% endblock %}
 
 {% block content %}
-<div class="row justify-content-center result-shell">
-    <div class="col-lg-9">
-        <div class="card border-0 shadow-sm">
-            <div class="card-body p-4 p-lg-5">
-                <h1 class="h3 fw-bold mb-2">Hasil Prediksi</h1>
-                <p class="text-secondary">Output berikut merupakan hasil skrining awal dan tidak disimpan oleh sistem.</p>
+<div class="result-page">
+    <div class="row justify-content-center result-shell">
+        <div class="col-lg-9">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-lg-5">
+                    <h1 class="h3 fw-bold mb-2">Hasil Prediksi</h1>
+                    <p class="text-secondary">Output berikut merupakan hasil skrining awal dan tidak disimpan oleh sistem.</p>
 
-                {% if is_error %}
-                    {% set status_class = 'status-error' %}
-                {% elif status == 'Aman' %}
-                    {% set status_class = 'status-safe' %}
-                {% else %}
-                    {% set status_class = 'status-alert' %}
-                {% endif %}
-
-                <div class="result-banner enterprise-banner mb-4">
-                    <span class="status-pill {{ status_class }}">{{ status }}</span>
-                    {% if probability is not none %}
-                        <p class="mb-2 mt-3">Probabilitas indikasi masalah mental:</p>
-                        <h2 class="display-6 fw-bold text-danger">{{ probability }}%</h2>
-                        <progress class="result-progress-native" value="{{ probability }}" max="100">{{ probability }}%</progress>
+                    {% if is_error %}
+                        {% set status_class = 'status-error' %}
+                    {% elif status == 'Aman' %}
+                        {% set status_class = 'status-safe' %}
                     {% else %}
-                        <p class="mb-0 mt-3 text-secondary">Probabilitas tidak tersedia karena terjadi masalah pada proses prediksi.</p>
+                        {% set status_class = 'status-alert' %}
                     {% endif %}
-                </div>
 
-                <div class="card border-0 bg-light mb-4 summary-card">
-                    <div class="card-body">
-                        <h2 class="h6 fw-bold mb-3">Ringkasan Data Mahasiswa</h2>
-                        <div class="row g-2 small">
-                            <div class="col-md-6"><strong>Nama:</strong> {{ student_data.nama }}</div>
-                            <div class="col-md-6"><strong>Perguruan Tinggi:</strong> {{ student_data.perguruan_tinggi }}</div>
-                            <div class="col-md-6"><strong>Program Studi:</strong> {{ student_data.program_studi }}</div>
-                            <div class="col-md-6"><strong>Jenis Kelamin:</strong> {{ student_data.gender_text }}</div>
-                            <div class="col-md-4"><strong>Usia:</strong> {{ student_data.usia }}</div>
-                            <div class="col-md-4"><strong>Semester:</strong> {{ student_data.semester }}</div>
-                            <div class="col-md-4"><strong>IPK:</strong> {{ student_data.ipk }}</div>
+                    <div class="result-banner enterprise-banner mb-4">
+                        <span class="status-pill {{ status_class }}">{{ status }}</span>
+                        {% if probability is not none %}
+                            <p class="mb-2 mt-3">Estimasi probabilitas risiko masalah mental:</p>
+                            <h2 class="display-6 fw-bold text-danger">{{ probability }}%</h2>
+                            <progress class="result-progress-native" value="{{ probability }}" max="100">{{ probability }}%</progress>
+                        {% else %}
+                            <p class="mb-0 mt-3 text-secondary">Probabilitas tidak tersedia karena terjadi masalah pada proses prediksi.</p>
+                        {% endif %}
+                    </div>
+
+                    <div class="card border-0 bg-light mb-4 summary-card">
+                        <div class="card-body">
+                            <h2 class="h6 fw-bold mb-3">Ringkasan Data Mahasiswa</h2>
+                            <div class="row g-2 small">
+                                <div class="col-md-6"><strong>Nama:</strong> {{ student_data.nama }}</div>
+                                <div class="col-md-6"><strong>Perguruan Tinggi:</strong> {{ student_data.perguruan_tinggi }}</div>
+                                <div class="col-md-6"><strong>Program Studi:</strong> {{ student_data.program_studi }}</div>
+                                <div class="col-md-6"><strong>Jenis Kelamin:</strong> {{ student_data.gender_text }}</div>
+                                <div class="col-md-4"><strong>Usia:</strong> {{ student_data.usia }}</div>
+                                <div class="col-md-4"><strong>Semester:</strong> {{ student_data.semester }}</div>
+                                <div class="col-md-4"><strong>IPK:</strong> {{ student_data.ipk }}</div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <h2 class="h5 fw-semibold mb-3">Rekomendasi</h2>
-                {% if matched_recommendations %}
-                    <p class="text-secondary small mb-3">Rekomendasi berikut dihasilkan langsung dari setiap jawaban <strong>Ya</strong> pada SRQ-29.</p>
-                    <ul class="recommendation-list mb-4">
-                        {% for item in matched_recommendations %}
-                            <li>
-                                <div class="recommendation-meta">SRQ {{ item.question_index }} - {{ item.question_text }}</div>
-                                <div>{{ item.recommendation_text }}</div>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% else %}
-                    <ul class="recommendation-list mb-4">
-                        {% for item in recommendations %}
-                            <li>{{ item }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+                    <h2 class="h5 fw-semibold mb-3">Rekomendasi</h2>
+                    {% if matched_recommendations %}
+                        <p class="text-secondary small mb-3">Rekomendasi berikut dihasilkan langsung dari setiap jawaban <strong>Ya</strong> pada SRQ-29.</p>
+                        <ul class="recommendation-list mb-4">
+                            {% for item in matched_recommendations %}
+                                <li>
+                                    <div class="recommendation-meta">SRQ {{ item.question_index }} - {{ item.question_text }}</div>
+                                    <div>{{ item.recommendation_text }}</div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <ul class="recommendation-list mb-4">
+                            {% for item in recommendations %}
+                                <li>{{ item }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
 
-                <p class="small text-secondary mb-4"><strong>Disclaimer:</strong> Aplikasi ini hanya alat skrining awal, bukan diagnosis klinis. Jika Anda membutuhkan bantuan, segera hubungi layanan profesional.</p>
+                    <p class="small text-secondary mb-4"><strong>Disclaimer:</strong> Aplikasi ini hanya alat skrining awal, bukan diagnosis klinis. Jika Anda membutuhkan bantuan, segera hubungi layanan profesional.</p>
 
-                <div class="d-flex flex-wrap gap-2">
-                    <a href="{{ url_for('main.predict') }}" class="btn btn-primary">Prediksi Ulang</a>
-                    <a href="{{ url_for('main.about') }}" class="btn btn-outline-secondary">Lihat Informasi Metode</a>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="{{ url_for('main.predict') }}" class="btn btn-primary">Prediksi Ulang</a>
+                        <a href="{{ url_for('main.about') }}" class="btn btn-outline-secondary">Lihat Informasi Metode</a>
+                    </div>
                 </div>
             </div>
         </div>

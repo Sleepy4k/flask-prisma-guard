@@ -8,6 +8,24 @@
     box-shadow: 0 24px 44px rgba(18, 20, 24, 0.09);
 }
 
+.home-page .mb-5 {
+    margin-bottom: clamp(1rem, 2.4vw, 2.2rem) !important;
+}
+
+.home-page .mb-4 {
+    margin-bottom: clamp(0.85rem, 1.8vw, 1.5rem) !important;
+}
+
+.home-page .row.g-4 {
+    --bs-gutter-x: clamp(0.9rem, 2vw, 1.5rem);
+    --bs-gutter-y: clamp(0.9rem, 2vw, 1.5rem);
+}
+
+.home-page .row.g-3 {
+    --bs-gutter-x: clamp(0.75rem, 1.6vw, 1.2rem);
+    --bs-gutter-y: clamp(0.75rem, 1.6vw, 1.2rem);
+}
+
 .enterprise-hero {
     isolation: isolate;
 }
@@ -49,15 +67,31 @@
     font-weight: 600;
     letter-spacing: 0.02em;
     background: #fff9fa !important;
+    line-height: 1.35;
 }
 
 .hero-title {
-    max-width: 18ch;
+    max-width: 19ch;
+    font-size: clamp(1.78rem, 2.7vw, 2.7rem);
     line-height: 1.08;
 }
 
 .hero-panel .lead {
     max-width: 54ch;
+    font-size: clamp(0.98rem, 0.35vw + 0.9rem, 1.08rem);
+}
+
+.home-page .step-card h3 {
+    font-size: clamp(1.01rem, 0.7vw + 0.88rem, 1.2rem);
+}
+
+.home-page .step-card p {
+    font-size: clamp(0.9rem, 0.3vw + 0.86rem, 0.96rem);
+}
+
+.home-page .accordion-body {
+    font-size: clamp(0.9rem, 0.22vw + 0.86rem, 0.97rem);
+    line-height: 1.62;
 }
 
 .hero-actions .btn {
@@ -191,6 +225,65 @@
     font-weight: 600;
 }
 
+@media (max-width: 991.98px) {
+    .hero-title {
+        max-width: none;
+    }
+
+    .hero-panel {
+        padding: 1.55rem !important;
+    }
+
+    .trust-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .hero-actions .btn {
+        min-width: 156px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .home-page .mb-5 {
+        margin-bottom: 1.2rem !important;
+    }
+
+    .home-page .mb-4 {
+        margin-bottom: 0.95rem !important;
+    }
+
+    .home-page .row.g-4,
+    .home-page .row.g-3 {
+        --bs-gutter-x: 0.78rem;
+        --bs-gutter-y: 0.78rem;
+    }
+
+    .hero-panel {
+        padding: 1.3rem !important;
+    }
+
+    .hero-actions {
+        gap: 0.55rem !important;
+    }
+
+    .step-card .card-body {
+        padding: 1rem;
+    }
+
+    .accordion-button {
+        font-size: 0.94rem;
+        padding: 0.85rem 0.95rem;
+    }
+
+    .trust-metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .metric-item {
+        padding: 0.55rem 0.65rem;
+    }
+}
+
 @media (max-width: 576px) {
     .hero-actions .btn {
         width: 100%;
@@ -202,5 +295,111 @@
 
     .hero-panel {
         padding: 1.25rem !important;
+    }
+
+    .hero-title {
+        font-size: clamp(1.52rem, 8.2vw, 1.95rem);
+    }
+
+    .hero-panel .lead {
+        font-size: 0.95rem;
+        max-width: none;
+    }
+
+    .hero-panel::before {
+        width: 170px;
+        height: 170px;
+        top: -90px;
+        right: -55px;
+    }
+
+    .hero-panel::after {
+        width: 130px;
+        height: 130px;
+        bottom: -70px;
+        left: -50px;
+    }
+}
+
+@media (max-width: 420px) {
+    .home-page .row.g-4,
+    .home-page .row.g-3 {
+        --bs-gutter-x: 0.65rem;
+        --bs-gutter-y: 0.7rem;
+    }
+
+    .hero-eyebrow {
+        font-size: 0.72rem;
+    }
+
+    .hero-title {
+        font-size: 1.44rem;
+    }
+
+    .accordion-button {
+        font-size: 0.9rem;
+        padding: 0.75rem 0.82rem;
+    }
+}
+
+@media (max-width: 390px) {
+    .hero-panel {
+        padding: 1.08rem !important;
+    }
+
+    .hero-eyebrow {
+        width: 100%;
+        text-align: center;
+        font-size: 0.7rem;
+        padding-inline: 0.55rem;
+    }
+
+    .hero-title {
+        font-size: 1.36rem;
+    }
+
+    .hero-panel .lead {
+        font-size: 0.91rem;
+        line-height: 1.56;
+    }
+
+    .trust-metrics {
+        gap: 0.42rem;
+    }
+
+    .metric-item {
+        padding: 0.48rem 0.55rem;
+    }
+
+    .home-page .step-card .card-body {
+        padding: 0.9rem;
+    }
+
+    .accordion-body {
+        padding: 0.76rem 0.82rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .hero-panel {
+        padding: 0.96rem !important;
+    }
+
+    .hero-title {
+        font-size: 1.3rem;
+    }
+
+    .home-page .step-card .card-body {
+        padding: 0.82rem;
+    }
+
+    .home-page .step-card h3 {
+        margin-top: 0.55rem !important;
+        font-size: 0.98rem;
+    }
+
+    .accordion-button {
+        font-size: 0.88rem;
+        padding: 0.7rem 0.72rem;
     }
 }

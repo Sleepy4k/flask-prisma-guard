@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
             item.classList.toggle("completed", index < currentStep);
         });
 
-        stepCounter.textContent = `Step ${currentStep + 1} of ${steps.length}`;
+        stepCounter.textContent = `Langkah ${currentStep + 1} dari ${steps.length}`;
     }
 
     function renderStep() {
