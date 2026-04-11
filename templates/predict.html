@@ -1,181 +1,379 @@
 {% extends 'base.html' %}
+
 {% block title %}Prediksi | Prisma Guard{% endblock %}
+
 {% block meta_description %}Isi form prediksi Prisma Guard untuk skrining awal kesehatan mental mahasiswa menggunakan SRQ-29 dan data akademik demografis.{% endblock %}
+
 {% block og_description %}Form prediksi Prisma Guard: isi SRQ-29 dan data mahasiswa untuk mendapatkan hasil skrining awal yang cepat.{% endblock %}
+
 {% block page_styles %}
-<link rel="stylesheet" href="{{ asset_url('css/predict.css') }}">
+<link rel="stylesheet" href="{{ asset_url('css/predict.css') }}" />
 {% endblock %}
 
 {% block content %}
 <div class="predict-page">
-    <div class="row justify-content-center prediction-shell">
-        <div class="col-xl-10">
-            <div class="card border-0 shadow-sm">
-                <div class="card-body p-4 p-lg-5">
-                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
-                        <div>
-                            <h1 class="h3 fw-bold mb-2">Form Skrining Kesehatan Mental</h1>
-                            <p class="text-secondary mb-0">Lengkapi data mahasiswa dan kuesioner SRQ-29. Semua data diproses sementara tanpa disimpan.</p>
-                        </div>
-                        <span id="stepCounter" class="badge rounded-pill text-bg-light border border-danger-subtle text-danger px-3 py-2">Langkah 1 dari 4</span>
-                    </div>
-
-                    <div class="step-indicator mb-4" id="stepIndicator">
-                        <div class="step-indicator-item active" data-step="1"><span>1</span><small>Data</small></div>
-                        <div class="step-indicator-item" data-step="2"><span>2</span><small>SRQ 1-10</small></div>
-                        <div class="step-indicator-item" data-step="3"><span>3</span><small>SRQ 11-20</small></div>
-                        <div class="step-indicator-item" data-step="4"><span>4</span><small>SRQ 21-29</small></div>
-                    </div>
-                    <p class="prediction-note text-secondary mb-4">Isi seluruh pertanyaan secara jujur untuk hasil skrining yang lebih representatif.</p>
-
-                    <form id="predictionForm" action="{{ url_for('main.predict') }}" method="post" novalidate>
-                        <div class="form-step active" data-step="1">
-                            <h2 class="h5 fw-semibold mb-3">Langkah 1: Data Mahasiswa</h2>
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label for="nama" class="form-label">Nama</label>
-                                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama lengkap" required>
-                                    <div class="invalid-feedback">Nama wajib diisi minimal 3 karakter.</div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="perguruan_tinggi" class="form-label">Perguruan Tinggi</label>
-                                    <input type="text" class="form-control" id="perguruan_tinggi" name="perguruan_tinggi" placeholder="Contoh: Telkom University" required>
-                                    <div class="invalid-feedback">Perguruan tinggi wajib diisi.</div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="gender" class="form-label">Jenis Kelamin</label>
-                                    <select class="form-select" id="gender" name="gender" required>
-                                        <option value="" selected>Pilih jenis kelamin</option>
-                                        <option value="1">Laki-laki</option>
-                                        <option value="0">Perempuan</option>
-                                    </select>
-                                    <div class="invalid-feedback">Pilih jenis kelamin terlebih dahulu.</div>
-                                </div>
-                                <div class="col-md-8">
-                                    <label for="program_studi" class="form-label">Program Studi</label>
-                                    <input type="text" class="form-control" id="program_studi" name="program_studi" placeholder="Contoh: Teknik Informatika" required>
-                                    <div class="invalid-feedback">Program studi wajib diisi.</div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="usia" class="form-label">Usia</label>
-                                    <input type="number" class="form-control" id="usia" name="usia" min="15" max="60" value="18" required>
-                                    <div class="invalid-feedback">Usia harus antara 15 sampai 60.</div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="semester" class="form-label">Semester</label>
-                                    <input type="number" class="form-control" id="semester" name="semester" min="1" max="14" value="1" required>
-                                    <div class="invalid-feedback">Semester harus antara 1 sampai 14.</div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="ipk" class="form-label">IPK</label>
-                                    <input type="number" class="form-control" id="ipk" name="ipk" min="0" max="4" step="0.01" value="4.00" required>
-                                    <div class="invalid-feedback">IPK harus antara 0.00 sampai 4.00.</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-step" data-step="2">
-                            <h2 class="h5 fw-semibold mb-3">Langkah 2: SRQ-29 (Pertanyaan 1-10)</h2>
-                            {% for question in questions[:10] %}
-                                {% set idx = loop.index %}
-                                <div class="question-block mb-3 p-3 rounded-3 border" data-question-name="srq_{{ idx }}">
-                                    <p class="fw-medium mb-2">{{ idx }}. {{ question }}</p>
-                                    <div class="d-flex gap-4 flex-wrap">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="srq_{{ idx }}" id="srq_{{ idx }}_yes" value="1">
-                                            <label class="form-check-label" for="srq_{{ idx }}_yes">Ya</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="srq_{{ idx }}" id="srq_{{ idx }}_no" value="0">
-                                            <label class="form-check-label" for="srq_{{ idx }}_no">Tidak</label>
-                                        </div>
-                                    </div>
-                                    <div class="question-error text-danger small mt-2 d-none">Pilih Ya atau Tidak untuk melanjutkan.</div>
-                                </div>
-                            {% endfor %}
-                        </div>
-
-                        <div class="form-step" data-step="3">
-                            <h2 class="h5 fw-semibold mb-3">Langkah 3: SRQ-29 (Pertanyaan 11-20)</h2>
-                            {% for question in questions[10:20] %}
-                                {% set idx = loop.index + 10 %}
-                                <div class="question-block mb-3 p-3 rounded-3 border" data-question-name="srq_{{ idx }}">
-                                    <p class="fw-medium mb-2">{{ idx }}. {{ question }}</p>
-                                    <div class="d-flex gap-4 flex-wrap">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="srq_{{ idx }}" id="srq_{{ idx }}_yes" value="1">
-                                            <label class="form-check-label" for="srq_{{ idx }}_yes">Ya</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="srq_{{ idx }}" id="srq_{{ idx }}_no" value="0">
-                                            <label class="form-check-label" for="srq_{{ idx }}_no">Tidak</label>
-                                        </div>
-                                    </div>
-                                    <div class="question-error text-danger small mt-2 d-none">Pilih Ya atau Tidak untuk melanjutkan.</div>
-                                </div>
-                            {% endfor %}
-                        </div>
-
-                        <div class="form-step" data-step="4">
-                            <h2 class="h5 fw-semibold mb-3">Langkah 4: SRQ-29 (Pertanyaan 21-29)</h2>
-                            {% for question in questions[20:29] %}
-                                {% set idx = loop.index + 20 %}
-                                <div class="question-block mb-3 p-3 rounded-3 border" data-question-name="srq_{{ idx }}">
-                                    <p class="fw-medium mb-2">{{ idx }}. {{ question }}</p>
-                                    <div class="d-flex gap-4 flex-wrap">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="srq_{{ idx }}" id="srq_{{ idx }}_yes" value="1">
-                                            <label class="form-check-label" for="srq_{{ idx }}_yes">Ya</label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="srq_{{ idx }}" id="srq_{{ idx }}_no" value="0">
-                                            <label class="form-check-label" for="srq_{{ idx }}_no">Tidak</label>
-                                        </div>
-                                    </div>
-                                    <div class="question-error text-danger small mt-2 d-none">Pilih Ya atau Tidak untuk melanjutkan.</div>
-                                </div>
-                            {% endfor %}
-
-                            <div class="alert alert-warning mt-4 mb-0">
-                                Pastikan seluruh data sudah benar. Setelah dikirim, sistem langsung memproses hasil skrining.
-                            </div>
-                        </div>
-
-                        <div class="d-flex justify-content-between mt-4 pt-3 border-top">
-                            <button type="button" id="prevBtn" class="btn btn-outline-secondary px-4" disabled>Sebelumnya</button>
-                            <div class="d-flex gap-2">
-                                <button type="button" id="nextBtn" class="btn btn-primary px-4">Lanjut</button>
-                                <button type="button" id="submitTriggerBtn" class="btn btn-primary px-4 d-none">Kirim Prediksi</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+  <div class="row justify-content-center prediction-shell">
+    <div class="col-xl-10">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-4 p-lg-5">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4"
+          >
+            <div>
+              <h1 class="h3 fw-bold mb-2">Form Skrining Kesehatan Mental</h1>
+              <p class="text-secondary mb-0">
+                Lengkapi data mahasiswa dan kuesioner SRQ-29. Semua data
+                diproses sementara tanpa disimpan.
+              </p>
             </div>
+            <span
+              id="stepCounter"
+              class="badge rounded-pill text-bg-light border border-danger-subtle text-danger px-3 py-2"
+              >Langkah 1 dari 4</span
+            >
+          </div>
+
+          <div class="step-indicator mb-4" id="stepIndicator">
+            <div class="step-indicator-item active" data-step="1">
+              <span>1</span><small>Data</small>
+            </div>
+            <div class="step-indicator-item" data-step="2">
+              <span>2</span><small>SRQ 1-10</small>
+            </div>
+            <div class="step-indicator-item" data-step="3">
+              <span>3</span><small>SRQ 11-20</small>
+            </div>
+            <div class="step-indicator-item" data-step="4">
+              <span>4</span><small>SRQ 21-29</small>
+            </div>
+          </div>
+          <p class="prediction-note text-secondary mb-4">
+            Isi seluruh pertanyaan secara jujur untuk hasil skrining yang lebih
+            representatif.
+          </p>
+
+          <form
+            id="predictionForm"
+            action="{{ url_for('main.predict') }}"
+            method="post"
+            novalidate
+          >
+            <div class="form-step active" data-step="1">
+              <h2 class="h5 fw-semibold mb-3">Langkah 1: Data Mahasiswa</h2>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="nama" class="form-label">Nama</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="nama"
+                    name="nama"
+                    placeholder="Nama lengkap"
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Nama wajib diisi minimal 3 karakter.
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="perguruan_tinggi" class="form-label"
+                    >Perguruan Tinggi</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="perguruan_tinggi"
+                    name="perguruan_tinggi"
+                    placeholder="Contoh: Telkom University"
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Perguruan tinggi wajib diisi.
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label for="gender" class="form-label">Jenis Kelamin</label>
+                  <select
+                    class="form-select"
+                    id="gender"
+                    name="gender"
+                    required
+                  >
+                    <option value="" selected>Pilih jenis kelamin</option>
+                    <option value="1">Laki-laki</option>
+                    <option value="0">Perempuan</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Pilih jenis kelamin terlebih dahulu.
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <label for="program_studi" class="form-label"
+                    >Program Studi</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="program_studi"
+                    name="program_studi"
+                    placeholder="Contoh: Teknik Informatika"
+                    required
+                  />
+                  <div class="invalid-feedback">Program studi wajib diisi.</div>
+                </div>
+                <div class="col-md-4">
+                  <label for="usia" class="form-label">Usia</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="usia"
+                    name="usia"
+                    min="15"
+                    max="60"
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Usia harus antara 15 sampai 60.
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label for="semester" class="form-label">Semester</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="semester"
+                    name="semester"
+                    min="1"
+                    max="14"
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Semester harus antara 1 sampai 14.
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label for="ipk" class="form-label">IPK</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="ipk"
+                    name="ipk"
+                    min="0"
+                    max="4"
+                    step="0.01"
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    IPK harus antara 0.00 sampai 4.00.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-step" data-step="2">
+              <h2 class="h5 fw-semibold mb-3">
+                Langkah 2: SRQ-29 (Pertanyaan 1-10)
+              </h2>
+              {% for question in questions[:10] %} {% set idx = loop.index %}
+              <div
+                class="question-block mb-3 p-3 rounded-3 border"
+                data-question-name="srq_{{ idx }}"
+              >
+                <p class="fw-medium mb-2">{{ idx }}. {{ question }}</p>
+                <div class="d-flex gap-4 flex-wrap">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="srq_{{ idx }}"
+                      id="srq_{{ idx }}_yes"
+                      value="1"
+                    />
+                    <label class="form-check-label" for="srq_{{ idx }}_yes"
+                      >Ya</label
+                    >
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="srq_{{ idx }}"
+                      id="srq_{{ idx }}_no"
+                      value="0"
+                    />
+                    <label class="form-check-label" for="srq_{{ idx }}_no"
+                      >Tidak</label
+                    >
+                  </div>
+                </div>
+                <div class="question-error text-danger small mt-2 d-none">
+                  Pilih Ya atau Tidak untuk melanjutkan.
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+
+            <div class="form-step" data-step="3">
+              <h2 class="h5 fw-semibold mb-3">
+                Langkah 3: SRQ-29 (Pertanyaan 11-20)
+              </h2>
+              {% for question in questions[10:20] %} {% set idx = loop.index +
+              10 %}
+              <div
+                class="question-block mb-3 p-3 rounded-3 border"
+                data-question-name="srq_{{ idx }}"
+              >
+                <p class="fw-medium mb-2">{{ idx }}. {{ question }}</p>
+                <div class="d-flex gap-4 flex-wrap">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="srq_{{ idx }}"
+                      id="srq_{{ idx }}_yes"
+                      value="1"
+                    />
+                    <label class="form-check-label" for="srq_{{ idx }}_yes"
+                      >Ya</label
+                    >
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="srq_{{ idx }}"
+                      id="srq_{{ idx }}_no"
+                      value="0"
+                    />
+                    <label class="form-check-label" for="srq_{{ idx }}_no"
+                      >Tidak</label
+                    >
+                  </div>
+                </div>
+                <div class="question-error text-danger small mt-2 d-none">
+                  Pilih Ya atau Tidak untuk melanjutkan.
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+
+            <div class="form-step" data-step="4">
+              <h2 class="h5 fw-semibold mb-3">
+                Langkah 4: SRQ-29 (Pertanyaan 21-29)
+              </h2>
+              {% for question in questions[20:29] %} {% set idx = loop.index +
+              20 %}
+              <div
+                class="question-block mb-3 p-3 rounded-3 border"
+                data-question-name="srq_{{ idx }}"
+              >
+                <p class="fw-medium mb-2">{{ idx }}. {{ question }}</p>
+                <div class="d-flex gap-4 flex-wrap">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="srq_{{ idx }}"
+                      id="srq_{{ idx }}_yes"
+                      value="1"
+                    />
+                    <label class="form-check-label" for="srq_{{ idx }}_yes"
+                      >Ya</label
+                    >
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="srq_{{ idx }}"
+                      id="srq_{{ idx }}_no"
+                      value="0"
+                    />
+                    <label class="form-check-label" for="srq_{{ idx }}_no"
+                      >Tidak</label
+                    >
+                  </div>
+                </div>
+                <div class="question-error text-danger small mt-2 d-none">
+                  Pilih Ya atau Tidak untuk melanjutkan.
+                </div>
+              </div>
+              {% endfor %}
+
+              <div class="alert alert-warning mt-4 mb-0">
+                Pastikan seluruh data sudah benar. Setelah dikirim, sistem
+                langsung memproses hasil skrining.
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4 pt-3 border-top">
+              <button
+                type="button"
+                id="prevBtn"
+                class="btn btn-outline-secondary px-4"
+                disabled
+              >
+                Sebelumnya
+              </button>
+              <div class="d-flex gap-2">
+                <button type="button" id="nextBtn" class="btn btn-primary px-4">
+                  Lanjut
+                </button>
+                <button
+                  type="button"
+                  id="submitTriggerBtn"
+                  class="btn btn-primary px-4 d-none"
+                >
+                  Kirim Prediksi
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 {% endblock %}
 
 {% block page_modals %}
-<div class="modal fade" id="confirmSubmitModal" tabindex="-1" aria-labelledby="confirmSubmitModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content border-0 shadow">
-            <div class="modal-header">
-                <h2 class="modal-title h5" id="confirmSubmitModalLabel">Konfirmasi Pengiriman</h2>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Apakah semua data yang Anda isi sudah benar dan siap diproses?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-primary" form="predictionForm">Ya, Kirim</button>
-            </div>
-        </div>
+<div
+  class="modal fade"
+  id="confirmSubmitModal"
+  tabindex="-1"
+  aria-labelledby="confirmSubmitModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header">
+        <h2 class="modal-title h5" id="confirmSubmitModalLabel">
+          Konfirmasi Pengiriman
+        </h2>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        Apakah semua data yang Anda isi sudah benar dan siap diproses?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Batal
+        </button>
+        <button type="submit" class="btn btn-primary" form="predictionForm">
+          Ya, Kirim
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 {% endblock %}
 
 {% block page_scripts %}
-<script src="{{ asset_url('js/predict-form.js') }}" defer></script>
+<script src="{{ asset_url('js/predict-form.js') }}"></script>
+<script src="{{ asset_url('js/predict-animations.js') }}"></script>
 {% endblock %}

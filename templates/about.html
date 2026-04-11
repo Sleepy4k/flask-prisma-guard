@@ -1,68 +1,105 @@
 {% extends 'base.html' %}
+
 {% block title %}Tentang | Prisma Guard{% endblock %}
+
 {% block meta_description %}Pelajari metodologi Prisma Guard: SRQ-29, Standard Scaler, PCA, dan Logistic Regression untuk skrining awal kesehatan mental mahasiswa.{% endblock %}
+
 {% block og_description %}Penjelasan metode dan batasan Prisma Guard untuk skrining awal kesehatan mental mahasiswa berbasis machine learning.{% endblock %}
+
 {% block page_styles %}
-<link rel="stylesheet" href="{{ asset_url('css/about.css') }}">
+<link rel="stylesheet" href="{{ asset_url('css/about.css') }}" />
 {% endblock %}
 
 {% block content %}
 <div class="about-page">
-    <section class="mb-5 about-intro">
-        <h1 class="display-6 fw-bold mb-3">Tentang Proyek</h1>
-        <p class="text-secondary">Prisma Guard adalah alat skrining awal untuk membantu mahasiswa mengenali kemungkinan risiko kesehatan mental berdasarkan kombinasi data demografis dan jawaban kuesioner SRQ-29.</p>
-    </section>
+  <section class="mb-5 about-intro">
+    <h1 class="display-6 fw-bold mb-3">Tentang Proyek</h1>
+    <p class="text-secondary">
+      Prisma Guard adalah alat skrining awal untuk membantu mahasiswa mengenali
+      kemungkinan risiko kesehatan mental berdasarkan kombinasi data demografis
+      dan jawaban kuesioner SRQ-29.
+    </p>
+  </section>
 
-    <section class="row g-4 mb-5">
-        <div class="col-lg-7">
-            <div class="card border-0 shadow-sm h-100 enterprise-card">
-                <div class="card-body p-4">
-                    <h2 class="h4 fw-semibold mb-3">Metodologi</h2>
-                    <p class="text-secondary mb-3">Sistem menggunakan alur pemodelan Machine Learning berbasis <strong>Logistic Regression</strong> untuk klasifikasi risiko, didahului oleh tahapan <strong>Standard Scaler</strong> dan <strong>Principal Component Analysis (PCA)</strong> agar fitur lebih stabil dan efisien saat inferensi.</p>
-                    <ul class="pipeline-list mb-3">
-                        <li>Pengumpulan data menggunakan kuesioner SRQ-29</li>
-                        <li>Pra-pemrosesan data dan normalisasi fitur</li>
-                        <li>Reduksi dimensi menggunakan Principal Component Analysis (PCA)</li>
-                        <li>Klasifikasi risiko depresi menggunakan algoritma Logistic Regression</li>
-                        <li>Penyajian hasil prediksi dan rekomendasi melalui sistem berbasis web</li>
-                    </ul>
-                    <div class="row g-3">
-                        <div class="col-sm-6">
-                            <div class="stat-box">
-                                <div class="stat-value">486</div>
-                                <div class="stat-label">Total Responden</div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="stat-box">
-                                <div class="stat-value">80%</div>
-                                <div class="stat-label">Memiliki 80% variansi data (PCA)</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  <section class="row g-4 mb-5">
+    <div class="col-lg-7">
+      <div class="card border-0 shadow-sm h-100 enterprise-card">
+        <div class="card-body p-4">
+          <h2 class="h4 fw-semibold mb-3">Metodologi</h2>
+          <p class="text-secondary mb-3">
+            Sistem menggunakan alur pemodelan Machine Learning berbasis
+            <strong>Logistic Regression</strong> untuk klasifikasi risiko,
+            didahului oleh tahapan <strong>Standard Scaler</strong> dan
+            <strong>Principal Component Analysis (PCA)</strong> agar fitur lebih
+            stabil dan efisien saat inferensi.
+          </p>
+          <ul class="pipeline-list mb-3">
+            <li>Pengumpulan data menggunakan kuesioner SRQ-29</li>
+            <li>Pra-pemrosesan data dan normalisasi fitur</li>
+            <li>
+              Reduksi dimensi menggunakan Principal Component Analysis (PCA)
+            </li>
+            <li>
+              Klasifikasi risiko depresi menggunakan algoritma Logistic
+              Regression
+            </li>
+            <li>
+              Penyajian hasil prediksi dan rekomendasi melalui sistem berbasis
+              web
+            </li>
+          </ul>
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <div class="stat-box">
+                <div class="stat-value">486</div>
+                <div class="stat-label">Total Responden</div>
+              </div>
             </div>
-        </div>
-        <div class="col-lg-5">
-            <div class="card border-0 shadow-sm h-100 enterprise-card">
-                <div class="card-body p-4">
-                    <h2 class="h4 fw-semibold mb-3">Batasan Sistem</h2>
-                    <ul class="text-secondary ps-3 mb-0 privacy-list">
-                        <li>Sistem hanya menghasilkan klasifikasi biner risiko depresi.</li>
-                        <li>Sistem tidak menampilkan tingkat keparahan depresi.</li>
-                        <li>Rekomendasi yang diberikan bersifat umum dan berdasarkan jawaban pengguna.</li>
-                        <li>Hasil prediksi tidak dimaksudkan sebagai diagnosis medis.</li>
-                    </ul>
-                </div>
+            <div class="col-sm-6">
+              <div class="stat-box">
+                <div class="stat-value">80%</div>
+                <div class="stat-label">Memiliki 80% variansi data (PCA)</div>
+              </div>
             </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="card border-0 shadow-sm h-100 enterprise-card">
+        <div class="card-body p-4">
+          <h2 class="h4 fw-semibold mb-3">Batasan Sistem</h2>
+          <ul class="text-secondary ps-3 mb-0 privacy-list">
+            <li>Sistem hanya menghasilkan klasifikasi biner risiko depresi.</li>
+            <li>Sistem tidak menampilkan tingkat keparahan depresi.</li>
+            <li>
+              Rekomendasi yang diberikan bersifat umum dan berdasarkan jawaban
+              pengguna.
+            </li>
+            <li>Hasil prediksi tidak dimaksudkan sebagai diagnosis medis.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section>
-        <div class="alert alert-danger border-0 shadow-sm enterprise-disclaimer" role="alert">
-            <h2 class="h5 fw-bold">Catatan Penting</h2>
-            <p class="mb-0">Hasil dari aplikasi ini <strong>bukan diagnosis medis</strong>, melainkan skrining awal. Jika Anda atau teman Anda mengalami gejala yang mengganggu aktivitas harian, segera hubungi layanan konseling kampus, psikolog, atau tenaga kesehatan profesional.</p>
-        </div>
-    </section>
+  <section>
+    <div
+      class="alert alert-danger border-0 shadow-sm enterprise-disclaimer"
+      role="alert"
+    >
+      <h2 class="h5 fw-bold">Catatan Penting</h2>
+      <p class="mb-0">
+        Hasil dari aplikasi ini <strong>bukan diagnosis medis</strong>,
+        melainkan skrining awal. Jika Anda atau teman Anda mengalami gejala yang
+        mengganggu aktivitas harian, segera hubungi layanan konseling kampus,
+        psikolog, atau tenaga kesehatan profesional.
+      </p>
+    </div>
+  </section>
 </div>
+{% endblock %}
+
+{% block page_scripts %}
+<script src="{{ asset_url('js/about-animations.js') }}"></script>
 {% endblock %}

@@ -1,131 +1,222 @@
 {% extends 'base.html' %}
+
 {% block title %}Beranda | Prisma Guard{% endblock %}
+
 {% block meta_description %}Beranda Prisma Guard untuk skrining awal kesehatan mental mahasiswa berbasis SRQ-29, cepat, aman, dan tanpa penyimpanan data.{% endblock %}
-{% block og_description %}Mulai skrining awal kesehatan mental mahasiswa dengan Prisma Guard berbasis SRQ-29 secara cepat dan aman.{% endblock %}
+
+{% block og_description %}Mulai skrining awal kesehatan mental mahasiswa dengan Prisma Guard berbasis SRQ-29 secara cepat dan aman.{% endblock%}
+
 {% block page_styles %}
-<link rel="stylesheet" href="{{ asset_url('css/home.css') }}">
+<link rel="stylesheet" href="{{ asset_url('css/home.css') }}" />
 {% endblock %}
 
 {% block content %}
 <div class="home-page">
-    <section class="hero-panel enterprise-hero rounded-4 p-4 p-lg-5 mb-5">
-        <div class="row align-items-center g-4">
-            <div class="col-lg-7">
-                <span class="badge text-bg-light border border-danger-subtle text-danger mb-3 hero-eyebrow">Skrining Kesehatan Mental Mahasiswa</span>
-                <h1 class="display-6 fw-bold mb-3 hero-title">Prisma Guard untuk Deteksi Dini Kesehatan Mental Mahasiswa</h1>
-                <p class="lead text-secondary mb-4">Lengkapi data mahasiswa dan kuesioner SRQ-29 untuk memperoleh gambaran risiko awal berbasis model machine learning Logistic Regression.</p>
-                <div class="hero-actions d-flex flex-wrap gap-2">
-                    <a href="{{ url_for('main.predict') }}" class="btn btn-primary btn-lg px-4">Mulai Prediksi</a>
-                    <a href="{{ url_for('main.about') }}" class="btn btn-outline-secondary btn-lg px-4">Pelajari Metode</a>
-                </div>
-            </div>
-            <div class="col-lg-5">
-                <div class="glass-card p-4 h-100">
-                    <h2 class="h5 fw-semibold mb-3">Mengapa Prisma Guard?</h2>
-                    <ul class="mb-0 ps-3 text-secondary">
-                        <li>Proses cepat, selesai sekitar 3-5 menit.</li>
-                        <li>Input berbasis SRQ-29 + data demografis.</li>
-                        <li>Hasil probabilitas disertai rekomendasi awal.</li>
-                        <li>Tidak menyimpan data pengguna ke database.</li>
-                    </ul>
-                    <div class="trust-metrics mt-4">
-                        <div class="metric-item">
-                            <strong>4 Langkah</strong>
-                            <span>Alur sederhana</span>
-                        </div>
-                        <div class="metric-item">
-                            <strong>29 SRQ</strong>
-                            <span>Pertanyaan validasi</span>
-                        </div>
-                        <div class="metric-item">
-                            <strong>In-Memory</strong>
-                            <span>Tanpa simpan data</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <section class="hero-panel enterprise-hero rounded-4 p-4 p-lg-5 mb-5">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-7">
+        <span
+          class="badge text-bg-light border border-danger-subtle text-danger mb-3 hero-eyebrow"
+          >Aplikasi Prediksi Risiko Depresi Mahasiswa</span
+        >
+        <h1 class="display-6 fw-bold mb-3 hero-title">
+          Aplikasi Prediksi Risiko Depresi Mahasiswa
+        </h1>
+        <p class="lead text-secondary mb-4">
+          Lengkapi data mahasiswa dan kuesioner SRQ-29 untuk memperoleh gambaran
+          risiko awal berbasis model machine learning Logistic Regression.
+        </p>
+        <div class="hero-actions d-flex flex-wrap gap-2">
+          <a
+            href="{{ url_for('main.predict') }}"
+            class="btn btn-primary btn-lg px-4"
+            >Mulai Prediksi</a
+          >
+          <a
+            href="{{ url_for('main.about') }}"
+            class="btn btn-outline-secondary btn-lg px-4"
+            >Pelajari Metode</a
+          >
         </div>
-    </section>
+      </div>
+      <div class="col-lg-5">
+        <div class="glass-card p-4 h-100">
+          <h2 class="h5 fw-semibold mb-3">Mengapa Prisma Guard?</h2>
+          <ul class="mb-0 ps-3 text-secondary">
+            <li>Proses cepat, selesai sekitar 3-5 menit.</li>
+            <li>Input berbasis SRQ-29 + data demografis.</li>
+            <li>Hasil probabilitas disertai rekomendasi awal.</li>
+            <li>Tidak menyimpan data pengguna ke database.</li>
+          </ul>
+          <div class="trust-metrics mt-4">
+            <div class="metric-item">
+              <strong>4 Langkah</strong>
+              <span>Alur sederhana</span>
+            </div>
+            <div class="metric-item">
+              <strong>29 SRQ</strong>
+              <span>Pertanyaan validasi</span>
+            </div>
+            <div class="metric-item">
+              <strong>In-Memory</strong>
+              <span>Tanpa simpan data</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section class="mb-5">
-        <h2 class="h3 fw-bold mb-4 section-title">Cara Kerja</h2>
-        <div class="row g-3">
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm step-card">
-                    <div class="card-body">
-                        <span class="step-index">01</span>
-                        <h3 class="h5 mt-3">Isi Data Mahasiswa</h3>
-                        <p class="text-secondary mb-0">Masukkan identitas akademik dasar seperti usia, semester, dan IPK.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm step-card">
-                    <div class="card-body">
-                        <span class="step-index">02</span>
-                        <h3 class="h5 mt-3">Jawab Kuesioner SRQ-29</h3>
-                        <p class="text-secondary mb-0">Jawab 29 pertanyaan dengan jujur untuk gambaran kondisi saat ini.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm step-card">
-                    <div class="card-body">
-                        <span class="step-index">03</span>
-                        <h3 class="h5 mt-3">Lihat Hasil Prediksi</h3>
-                        <p class="text-secondary mb-0">Sistem menampilkan status awal dan rekomendasi tindak lanjut yang relevan.</p>
-                    </div>
-                </div>
-            </div>
+  <section class="mb-5">
+    <h2 class="h3 fw-bold mb-4 section-title">Cara Kerja</h2>
+    <div class="row g-3">
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm step-card">
+          <div class="card-body">
+            <span class="step-index">01</span>
+            <h3 class="h5 mt-3">Isi Data Mahasiswa</h3>
+            <p class="text-secondary mb-0">
+              Masukkan identitas akademik dasar seperti usia, semester, dan IPK.
+            </p>
+          </div>
         </div>
-    </section>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm step-card">
+          <div class="card-body">
+            <span class="step-index">02</span>
+            <h3 class="h5 mt-3">Jawab Kuesioner SRQ-29</h3>
+            <p class="text-secondary mb-0">
+              Jawab 29 pertanyaan dengan jujur untuk gambaran kondisi saat ini.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm step-card">
+          <div class="card-body">
+            <span class="step-index">03</span>
+            <h3 class="h5 mt-3">Lihat Hasil Prediksi</h3>
+            <p class="text-secondary mb-0">
+              Sistem menampilkan status awal dan rekomendasi tindak lanjut yang
+              relevan.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section>
-        <h2 class="h3 fw-bold mb-4 section-title">FAQ</h2>
-        <div class="faq-shell p-3 p-md-4 rounded-4">
-        <div class="accordion" id="faqAccordion">
-            <div class="accordion-item">
-                <h3 class="accordion-header" id="faqOneHeader">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqOne" aria-expanded="true" aria-controls="faqOne">
-                        Apa tujuan sistem ini?
-                    </button>
-                </h3>
-                <div id="faqOne" class="accordion-collapse collapse show" aria-labelledby="faqOneHeader" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body text-secondary">Sistem ini ditujukan sebagai alat skrining dini untuk membantu mahasiswa mengenali indikasi awal gangguan kesehatan mental.</div>
-                </div>
+  <section>
+    <h2 class="h3 fw-bold mb-4 section-title">FAQ</h2>
+    <div class="faq-shell p-3 p-md-4 rounded-4">
+      <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+          <h3 class="accordion-header" id="faqOneHeader">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#faqOne"
+              aria-expanded="true"
+              aria-controls="faqOne"
+            >
+              Apa tujuan sistem ini?
+            </button>
+          </h3>
+          <div
+            id="faqOne"
+            class="accordion-collapse collapse show"
+            aria-labelledby="faqOneHeader"
+            data-bs-parent="#faqAccordion"
+          >
+            <div class="accordion-body text-secondary">
+              Sistem ini ditujukan sebagai alat skrining dini untuk membantu
+              mahasiswa mengenali indikasi awal gangguan kesehatan mental.
             </div>
-            <div class="accordion-item">
-                <h3 class="accordion-header" id="faqTwoHeader">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwo" aria-expanded="false" aria-controls="faqTwo">
-                        Apakah hasil ini adalah diagnosis medis?
-                    </button>
-                </h3>
-                <div id="faqTwo" class="accordion-collapse collapse" aria-labelledby="faqTwoHeader" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body text-secondary">Bukan. Hasil hanya prediksi awal berbasis model statistik. Untuk diagnosis, tetap konsultasikan ke psikolog atau psikiater.</div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h3 class="accordion-header" id="faqThreeHeader">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqThree" aria-expanded="false" aria-controls="faqThree">
-                        Apakah data saya disimpan?
-                    </button>
-                </h3>
-                <div id="faqThree" class="accordion-collapse collapse" aria-labelledby="faqThreeHeader" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body text-secondary">Tidak. Sesuai desain sistem ini, semua pemrosesan dilakukan secara in-memory dan tidak ada penyimpanan ke database.</div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h3 class="accordion-header" id="faqFourHeader">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFour" aria-expanded="false" aria-controls="faqFour">
-                        Siapa yang sebaiknya menggunakan alat ini?
-                    </button>
-                </h3>
-                <div id="faqFour" class="accordion-collapse collapse" aria-labelledby="faqFourHeader" data-bs-parent="#faqAccordion">
-                    <div class="accordion-body text-secondary">Mahasiswa yang ingin melakukan pengecekan awal kondisi psikologis untuk meningkatkan kewaspadaan dan mencari bantuan lebih cepat.</div>
-                </div>
-            </div>
+          </div>
         </div>
+        <div class="accordion-item">
+          <h3 class="accordion-header" id="faqTwoHeader">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#faqTwo"
+              aria-expanded="false"
+              aria-controls="faqTwo"
+            >
+              Apakah hasil ini adalah diagnosis medis?
+            </button>
+          </h3>
+          <div
+            id="faqTwo"
+            class="accordion-collapse collapse"
+            aria-labelledby="faqTwoHeader"
+            data-bs-parent="#faqAccordion"
+          >
+            <div class="accordion-body text-secondary">
+              Bukan. Hasil hanya prediksi awal berbasis model statistik. Untuk
+              diagnosis, tetap konsultasikan ke psikolog atau psikiater.
+            </div>
+          </div>
         </div>
-    </section>
+        <div class="accordion-item">
+          <h3 class="accordion-header" id="faqThreeHeader">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#faqThree"
+              aria-expanded="false"
+              aria-controls="faqThree"
+            >
+              Apakah data saya disimpan?
+            </button>
+          </h3>
+          <div
+            id="faqThree"
+            class="accordion-collapse collapse"
+            aria-labelledby="faqThreeHeader"
+            data-bs-parent="#faqAccordion"
+          >
+            <div class="accordion-body text-secondary">
+              Tidak. Sesuai desain sistem ini, semua pemrosesan dilakukan secara
+              in-memory dan tidak ada penyimpanan ke database.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h3 class="accordion-header" id="faqFourHeader">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#faqFour"
+              aria-expanded="false"
+              aria-controls="faqFour"
+            >
+              Siapa yang sebaiknya menggunakan alat ini?
+            </button>
+          </h3>
+          <div
+            id="faqFour"
+            class="accordion-collapse collapse"
+            aria-labelledby="faqFourHeader"
+            data-bs-parent="#faqAccordion"
+          >
+            <div class="accordion-body text-secondary">
+              Mahasiswa yang ingin melakukan pengecekan awal kondisi psikologis
+              untuk meningkatkan kewaspadaan dan mencari bantuan lebih cepat.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
+{% endblock %}
+
+{% block page_scripts %}
+<script src="{{ asset_url('js/home-animations.js') }}"></script>
 {% endblock %}

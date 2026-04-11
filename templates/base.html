@@ -1,111 +1,199 @@
 <!doctype html>
 <html lang="id">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="{% block meta_description %}Prisma Guard membantu skrining awal kesehatan mental mahasiswa berbasis SRQ-29 tanpa penyimpanan data ke database.{% endblock %}">
-        <meta name="robots" content="index,follow">
-        <meta name="author" content="Prisma Guard">
-        <meta name="theme-color" content="#ed1c24">
-        <link rel="canonical" href="{{ request.base_url }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="{% block meta_description %}Prisma Guard membantu skrining awal kesehatan mental mahasiswa berbasis SRQ-29 tanpa penyimpanan data ke database.{% endblock %}"
+    />
+    <meta name="robots" content="index,follow" />
+    <meta name="author" content="Prisma Guard" />
+    <meta name="theme-color" content="#ed1c24" />
+    <link rel="canonical" href="{{ request.base_url }}" />
 
-        <meta property="og:site_name" content="Prisma Guard">
-        <meta property="og:type" content="website">
-        <meta property="og:locale" content="id_ID">
-        <meta property="og:title" content="{{ self.title() | striptags }}">
-        <meta property="og:description" content="{% block og_description %}Prisma Guard menyediakan skrining awal kesehatan mental mahasiswa berbasis SRQ-29 secara cepat dan aman.{% endblock %}">
-        <meta property="og:url" content="{{ request.base_url }}">
-        <meta property="og:image" content="{{ request.url_root.rstrip('/') ~ asset_url('img/logo.png') }}">
+    <meta property="og:site_name" content="Prisma Guard" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:title" content="{{ self.title() | striptags }}" />
+    <meta
+      property="og:description"
+      content="{% block og_description %}Prisma Guard menyediakan skrining awal kesehatan mental mahasiswa berbasis SRQ-29 secara cepat dan aman.{% endblock %}"
+    />
+    <meta property="og:url" content="{{ request.base_url }}" />
+    <meta
+      property="og:image"
+      content="{{ request.url_root.rstrip('/') ~ asset_url('img/logo.png') }}"
+    />
 
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="{{ self.title() | striptags }}">
-        <meta name="twitter:description" content="{% block twitter_description %}Prisma Guard menyediakan skrining awal kesehatan mental mahasiswa berbasis SRQ-29 secara cepat dan aman.{% endblock %}">
-        <meta name="twitter:image" content="{{ request.url_root.rstrip('/') ~ asset_url('img/logo.png') }}">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ self.title() | striptags }}" />
+    <meta
+      name="twitter:description"
+      content="{% block twitter_description %}Prisma Guard menyediakan skrining awal kesehatan mental mahasiswa berbasis SRQ-29 secara cepat dan aman.{% endblock %}"
+    />
+    <meta
+      name="twitter:image"
+      content="{{ request.url_root.rstrip('/') ~ asset_url('img/logo.png') }}"
+    />
 
-        <title>{% block title %}Prisma Guard{% endblock %}</title>
-        <link rel="icon" href="{{ asset_url('favicon.ico') }}" sizes="any">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link rel="stylesheet" href="{{ asset_url('css/base.css') }}">
-        {% block page_styles %}{% endblock %}
-        {% block head %}{% endblock %}
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-light main-navbar">
-            <div class="container">
-                <a class="navbar-brand fw-bold brand-red d-flex align-items-center gap-2 brand-lockup" href="{{ url_for('main.index') }}">
-                    <img src="{{ asset_url('img/logo.png') }}" alt="Prisma Guard Logo" class="brand-logo" width="42" height="42">
-                    <span class="brand-text-wrap">
-                        <span class="brand-title">Prisma Guard</span>
-                        <span class="brand-subtitle">Skrining Kesehatan Mental Mahasiswa</span>
-                    </span>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="mainNavbar">
-                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
-                        <li class="nav-item">
-                            <a class="nav-link nav-link-pill {% if request.endpoint == 'main.index' %}active{% endif %}" href="{{ url_for('main.index') }}">Beranda</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-link-pill {% if request.endpoint == 'main.about' %}active{% endif %}" href="{{ url_for('main.about') }}">Tentang</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="btn btn-primary px-3" href="{{ url_for('main.predict') }}">Mulai Prediksi</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+    <title>{% block title %}Prisma Guard{% endblock %}</title>
+    <script>
+      document.documentElement.classList.add("gsap-pending");
+      window.__pgGsapPaintTimer = window.setTimeout(function () {
+        document.documentElement.classList.remove("gsap-pending");
+      }, 1800);
+    </script>
+    <link rel="icon" href="{{ asset_url('favicon.ico') }}" sizes="any" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ asset_url('vendor/bootstrap/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset_url('css/base.css') }}" />
+    {% block page_styles %}{% endblock %}
+    {% block head %}{% endblock %}
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light main-navbar">
+      <div class="container">
+        <a
+          class="navbar-brand fw-bold brand-red d-flex align-items-center gap-2 brand-lockup"
+          href="{{ url_for('main.index') }}"
+        >
+          <img
+            src="{{ asset_url('img/logo.png') }}"
+            alt="Prisma Guard Logo"
+            class="brand-logo"
+            width="42"
+            height="42"
+          />
+          <span class="brand-text-wrap">
+            <span class="brand-title">Prisma Guard</span>
+            <span class="brand-subtitle"
+              >Aplikasi Prediksi Risiko Depresi Mahasiswa</span
+            >
+          </span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+            <li class="nav-item">
+              <a
+                class="nav-link nav-link-pill {% if request.endpoint == 'main.index' %}active{% endif %}"
+                href="{{ url_for('main.index') }}"
+                >Beranda</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link nav-link-pill {% if request.endpoint == 'main.about' %}active{% endif %}"
+                href="{{ url_for('main.about') }}"
+                >Tentang</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="btn btn-primary px-3"
+                href="{{ url_for('main.predict') }}"
+                >Mulai Prediksi</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
+    <div id="smooth-wrapper">
+      <div id="smooth-content">
         <main class="page-content">
-            <div class="container content-shell-wrap animate-in content-shell">
-                {% block content %}{% endblock %}
-            </div>
+          <div class="container content-shell-wrap animate-in content-shell">
+            {% block content %}{% endblock %}
+          </div>
         </main>
 
         <footer class="footer">
-            <div class="footer-grid">
-                <section class="footer-block">
-                    <div class="d-flex align-items-center gap-2 mb-2">
-                        <img src="{{ asset_url('img/logo.png') }}" alt="Prisma Guard Logo" class="footer-logo" width="34" height="34">
-                        <span class="footer-brand-title">Prisma Guard</span>
-                    </div>
-                    <p class="footer-description">Platform skrining awal kesehatan mental mahasiswa berbasis SRQ-29 dan machine learning, dengan pemrosesan aman tanpa penyimpanan database.</p>
-                </section>
+          <div class="footer-grid">
+            <section class="footer-block">
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <img
+                  src="{{ asset_url('img/logo.png') }}"
+                  alt="Prisma Guard Logo"
+                  class="footer-logo"
+                  width="34"
+                  height="34"
+                />
+                <span class="footer-brand-title">Prisma Guard</span>
+              </div>
+              <p class="footer-description">
+                Aplikasi Prediksi Risiko Depresi Mahasiswa berbasis SRQ-29
+                dan machine learning, dengan pemrosesan aman tanpa
+                penyimpanan database.
+              </p>
+            </section>
 
-                <section class="footer-block">
-                    <h2 class="footer-heading">Navigasi Cepat</h2>
-                    <ul class="footer-links">
-                        <li><a href="{{ url_for('main.index') }}">Beranda</a></li>
-                        <li><a href="{{ url_for('main.predict') }}">Mulai Prediksi</a></li>
-                        <li><a href="{{ url_for('main.about') }}">Tentang Metode</a></li>
-                    </ul>
-                </section>
+            <section class="footer-block">
+              <h2 class="footer-heading">Navigasi Cepat</h2>
+              <ul class="footer-links">
+                <li><a href="{{ url_for('main.index') }}">Beranda</a></li>
+                <li><a href="{{ url_for('main.predict') }}">Mulai Prediksi</a></li>
+                <li><a href="{{ url_for('main.about') }}">Tentang Metode</a></li>
+              </ul>
+            </section>
 
-                <section class="footer-block">
-                    <h2 class="footer-heading">Informasi</h2>
-                    <ul class="footer-links">
-                        <li><span>Pemrosesan in-memory</span></li>
-                        <li><span>Tanpa riwayat penyimpanan</span></li>
-                        <li><span>Hasil bukan diagnosis klinis</span></li>
-                    </ul>
-                </section>
-            </div>
+            <section class="footer-block">
+              <h2 class="footer-heading">Informasi</h2>
+              <ul class="footer-links">
+                <li><span>Pemrosesan in-memory</span></li>
+                <li><span>Tanpa riwayat penyimpanan</span></li>
+                <li><span>Hasil bukan diagnosis klinis</span></li>
+              </ul>
+            </section>
+          </div>
 
-            <div class="footer-bottom">
-                <span>© 2026 Prisma Guard. All rights reserved.</span>
-                <span class="footer-note">Privasi dijaga: data tidak disimpan di database.</span>
-            </div>
+          <div class="footer-bottom">
+            <span>© 2026 Prisma Guard. All rights reserved.</span>
+            <span class="footer-note"
+              >
+              Dibuat oleh <a href="https://github.com/rhezarya09" target="_blank" rel="noopener noreferrer">Rheznandya Arya Priatama</a>.
+              </span
+            >
+          </div>
         </footer>
+      </div>
+    </div>
 
-        {% block page_modals %}{% endblock %}
+    <button
+      type="button"
+      id="scrollToTopBtn"
+      class="scroll-to-top-btn"
+      aria-label="Kembali ke atas"
+      title="Kembali ke atas"
+    >
+      ↑
+    </button>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        {% block page_scripts %}{% endblock %}
-        {% block scripts %}{% endblock %}
-    </body>
+    {% block page_modals %}{% endblock %}
+
+    <script src="{{ asset_url('vendor/bootstrap/bootstrap.min.js') }}"></script>
+    <script src="{{ asset_url('vendor/gsap/gsap.min.js') }}"></script>
+    <script src="{{ asset_url('vendor/gsap/ScrollTrigger.min.js') }}"></script>
+    <script src="{{ asset_url('vendor/gsap/ScrollToPlugin.min.js') }}"></script>
+    <script src="{{ asset_url('vendor/gsap/ScrollSmoother.min.js') }}"></script>
+    <script src="{{ asset_url('js/animations.js') }}"></script>
+    {% block page_scripts %}{% endblock %}
+    {% block scripts %}{% endblock %}
+  </body>
 </html>
