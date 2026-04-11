@@ -152,6 +152,15 @@ a {
     padding-top: 0.45rem;
 }
 
+#smooth-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+#smooth-content {
+    min-height: 100vh;
+}
+
 .content-shell {
     max-width: var(--site-max-width);
     width: 100%;
@@ -497,8 +506,84 @@ a {
     font-weight: 500;
 }
 
+.scroll-to-top-btn {
+    position: fixed;
+    right: clamp(0.8rem, 2.1vw, 1.5rem);
+    bottom: clamp(0.85rem, 2.2vw, 1.6rem);
+    width: 46px;
+    height: 46px;
+    border: 1px solid #f2a8ad;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--telkom-red) 0%, var(--telkom-red-dark) 100%);
+    color: #ffffff;
+    font-size: 1.08rem;
+    line-height: 1;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 14px 24px rgba(237, 28, 36, 0.3);
+    z-index: 1065;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(14px);
+    transition: opacity 0.24s ease, transform 0.24s ease, visibility 0.24s ease;
+}
+
+.scroll-to-top-btn.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.scroll-to-top-btn:hover {
+    transform: translateY(-2px);
+}
+
+.scroll-to-top-btn:focus-visible {
+    outline: none;
+    box-shadow:
+        0 14px 24px rgba(237, 28, 36, 0.3),
+        0 0 0 0.18rem rgba(237, 28, 36, 0.25);
+}
+
+html.gsap-pending .main-navbar .container,
+html.gsap-pending .footer,
+html.gsap-pending .home-page .hero-panel,
+html.gsap-pending .home-page .step-card,
+html.gsap-pending .home-page .faq-shell,
+html.gsap-pending .about-page .about-intro,
+html.gsap-pending .about-page .enterprise-card,
+html.gsap-pending .about-page .enterprise-disclaimer,
+html.gsap-pending .predict-page .prediction-shell .card,
+html.gsap-pending .predict-page .step-indicator-item,
+html.gsap-pending .result-page .result-banner,
+html.gsap-pending .result-page .summary-card,
+html.gsap-pending .result-page .summary-item,
+html.gsap-pending .result-page .recommendation-list li {
+    opacity: 0;
+    visibility: hidden;
+}
+
 .animate-in {
     animation: fade-slide-in 0.45s ease both;
+}
+
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0) scale(0.992);
+    transition:
+        opacity 0.58s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.58s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+}
+
+.reveal-on-scroll.reveal-visible {
+    opacity: 1;
+    transform: none;
 }
 
 @keyframes fade-slide-in {
@@ -515,11 +600,35 @@ a {
 
 @media (prefers-reduced-motion: reduce) {
     .animate-in,
+    .reveal-on-scroll,
     .btn-primary,
     .nav-link,
     .nav-link::after {
         animation: none !important;
         transition: none !important;
+    }
+
+    .reveal-on-scroll {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    html.gsap-pending .main-navbar .container,
+    html.gsap-pending .footer,
+    html.gsap-pending .home-page .hero-panel,
+    html.gsap-pending .home-page .step-card,
+    html.gsap-pending .home-page .faq-shell,
+    html.gsap-pending .about-page .about-intro,
+    html.gsap-pending .about-page .enterprise-card,
+    html.gsap-pending .about-page .enterprise-disclaimer,
+    html.gsap-pending .predict-page .prediction-shell .card,
+    html.gsap-pending .predict-page .step-indicator-item,
+    html.gsap-pending .result-page .result-banner,
+    html.gsap-pending .result-page .summary-card,
+    html.gsap-pending .result-page .summary-item,
+    html.gsap-pending .result-page .recommendation-list li {
+        opacity: 1 !important;
+        visibility: visible !important;
     }
 }
 
@@ -601,6 +710,10 @@ a {
 }
 
 @media (max-width: 767.98px) {
+    .reveal-on-scroll {
+        transform: translate3d(0, 12px, 0) scale(0.996);
+    }
+
     body::after {
         width: 260px;
         height: 260px;
@@ -694,6 +807,14 @@ a {
     .footer-links a,
     .footer-links span {
         font-size: 0.81rem;
+    }
+
+    .scroll-to-top-btn {
+        width: 42px;
+        height: 42px;
+        right: 0.72rem;
+        bottom: 0.8rem;
+        font-size: 1rem;
     }
 }
 
