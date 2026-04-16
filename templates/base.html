@@ -72,9 +72,6 @@
           />
           <span class="brand-text-wrap">
             <span class="brand-title">Prisma Guard</span>
-            <span class="brand-subtitle"
-              >Aplikasi Prediksi Risiko Depresi Mahasiswa</span
-            >
           </span>
         </a>
         <button
@@ -138,9 +135,8 @@
                 <span class="footer-brand-title">Prisma Guard</span>
               </div>
               <p class="footer-description">
-                Aplikasi Prediksi Risiko Depresi Mahasiswa berbasis SRQ-29
-                dan machine learning, dengan pemrosesan aman tanpa
-                penyimpanan database.
+                Sistem ini hanya digunakan sebagai alat bantu skrining awal dan tidak 
+                menggantikan diagnosis medis atau konsultasi dengan tenaga profesional.
               </p>
             </section>
 
@@ -149,16 +145,16 @@
               <ul class="footer-links">
                 <li><a href="{{ url_for('main.index') }}">Beranda</a></li>
                 <li><a href="{{ url_for('main.predict') }}">Mulai Prediksi</a></li>
-                <li><a href="{{ url_for('main.about') }}">Tentang Metode</a></li>
+                <li><a href="{{ url_for('main.about') }}">Tentang Sistem</a></li>
               </ul>
             </section>
 
             <section class="footer-block">
               <h2 class="footer-heading">Informasi</h2>
               <ul class="footer-links">
-                <li><span>Pemrosesan in-memory</span></li>
-                <li><span>Tanpa riwayat penyimpanan</span></li>
-                <li><span>Hasil bukan diagnosis klinis</span></li>
+                <li><span>Berbasis kuesioner SRQ-29</span></li>
+                <li><span>Menggunakan model machine learning</span></li>
+                <li><span>Hasil prediksi disertai rekomendasi</span></li>
               </ul>
             </section>
           </div>
@@ -167,7 +163,7 @@
             <span>© 2026 Prisma Guard. All rights reserved.</span>
             <span class="footer-note"
               >
-              Dibuat oleh <a href="https://github.com/rhezarya09" target="_blank" rel="noopener noreferrer">Rheznandya Arya Priatama</a>.
+              Create by <a href="https://github.com/rhezarya09" target="_blank" rel="noopener noreferrer">Rheznandya Arya Priatama</a>.
               </span
             >
           </div>

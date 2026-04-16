@@ -220,7 +220,7 @@ a {
 }
 
 .brand-title {
-    font-size: 1.02rem;
+    font-size: 1.2rem;
     font-weight: 700;
     color: var(--ink-900);
 }
@@ -235,8 +235,8 @@ a {
 }
 
 .brand-logo {
-    width: 42px;
-    height: 42px;
+    width: 35px;
+    height: 35px;
     object-fit: contain;
     filter: drop-shadow(0 4px 10px rgba(237, 28, 36, 0.2));
 }

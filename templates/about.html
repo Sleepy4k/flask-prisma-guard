@@ -15,9 +15,9 @@
   <section class="mb-5 about-intro">
     <h1 class="display-6 fw-bold mb-3">Tentang Proyek</h1>
     <p class="text-secondary">
-      Prisma Guard adalah alat skrining awal untuk membantu mahasiswa mengenali
-      kemungkinan risiko kesehatan mental berdasarkan kombinasi data demografis
-      dan jawaban kuesioner SRQ-29.
+      Prisma Guard adalah alat skrining awal yang dirancang untuk membantu mahasiswa 
+      dalam mengidentifikasi risiko depresi secara dini berdasarkan data demografis 
+      dan jawaban kuesioner SRQ-29 dengan memanfaatkan model machine learning.
     </p>
   </section>
 
@@ -27,38 +27,41 @@
         <div class="card-body p-4">
           <h2 class="h4 fw-semibold mb-3">Metodologi</h2>
           <p class="text-secondary mb-3">
-            Sistem menggunakan alur pemodelan Machine Learning berbasis
-            <strong>Logistic Regression</strong> untuk klasifikasi risiko,
-            didahului oleh tahapan <strong>Standard Scaler</strong> dan
-            <strong>Principal Component Analysis (PCA)</strong> agar fitur lebih
-            stabil dan efisien saat inferensi.
+            Sistem ini menggunakan pendekatan teknologi machine learning dengan algoritma
+            <strong>Logistic Regression</strong> untuk mengklasifikasikan risiko depresi.
+            Sebelum proses klasifikasi, data terlebih dahulu melalui tahap standarisasi 
+            menggunakan <strong>Standard Scaler</strong> dan reduksi dimensi menggunakan
+            <strong>Principal Component Analysis (PCA)</strong> agar proses klasifikasi 
+            lebih stabil dan akurat.
           </p>
           <ul class="pipeline-list mb-3">
-            <li>Pengumpulan data menggunakan kuesioner SRQ-29</li>
-            <li>Pra-pemrosesan data dan normalisasi fitur</li>
+            <li>
+              Pengumpulan data menggunakan kuesioner SRQ-29
+            </li>
+            <li>
+              Pra-pemrosesan data dan standarisasi fitur menggunakan StandardScaler
+            </li>
             <li>
               Reduksi dimensi menggunakan Principal Component Analysis (PCA)
             </li>
             <li>
-              Klasifikasi risiko depresi menggunakan algoritma Logistic
-              Regression
+              Klasifikasi risiko depresi menggunakan algoritma Logistic Regression
             </li>
             <li>
-              Penyajian hasil prediksi dan rekomendasi melalui sistem berbasis
-              web
+              Penyajian hasil prediksi dan rekomendasi melalui sistem berbasis web
             </li>
           </ul>
           <div class="row g-3">
             <div class="col-sm-6">
               <div class="stat-box">
-                <div class="stat-value">486</div>
-                <div class="stat-label">Total Responden</div>
+                <div class="stat-value">486 Responden</div>
+                <div class="stat-label">Data pelatihan model</div>
               </div>
             </div>
             <div class="col-sm-6">
               <div class="stat-box">
-                <div class="stat-value">80%</div>
-                <div class="stat-label">Memiliki 80% variansi data (PCA)</div>
+                <div class="stat-value">80% Variansi</div>
+                <div class="stat-label">Memiliki 14 komponen utama (PCA)</div>
               </div>
             </div>
           </div>
@@ -70,12 +73,9 @@
         <div class="card-body p-4">
           <h2 class="h4 fw-semibold mb-3">Batasan Sistem</h2>
           <ul class="text-secondary ps-3 mb-0 privacy-list">
-            <li>Sistem hanya menghasilkan klasifikasi biner risiko depresi.</li>
+            <li>Sistem hanya menghasilkan klasifikasi risiko depresi dalam bentuk biner.</li>
             <li>Sistem tidak menampilkan tingkat keparahan depresi.</li>
-            <li>
-              Rekomendasi yang diberikan bersifat umum dan berdasarkan jawaban
-              pengguna.
-            </li>
+            <li>Rekomendasi yang diberikan bersifat umum dan berdasarkan jawaban pengguna.</li>
             <li>Hasil prediksi tidak dimaksudkan sebagai diagnosis medis.</li>
           </ul>
         </div>
@@ -90,10 +90,10 @@
     >
       <h2 class="h5 fw-bold">Catatan Penting</h2>
       <p class="mb-0">
-        Hasil dari aplikasi ini <strong>bukan diagnosis medis</strong>,
-        melainkan skrining awal. Jika Anda atau teman Anda mengalami gejala yang
-        mengganggu aktivitas harian, segera hubungi layanan konseling kampus,
-        psikolog, atau tenaga kesehatan profesional.
+        Hasil dari aplikasi ini <strong>bukan merupakan diagnosis medis</strong>, melainkan
+        hanya sebagai skrining awal. Jika Anda mengalami gejala yang mengganggu aktivitas
+        sehari-hari, segera hubungi layanan konseling kampus, psikolog, atau tenaga kesehatan 
+        profesional.
       </p>
     </div>
   </section>

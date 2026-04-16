@@ -17,14 +17,14 @@
       <div class="col-lg-7">
         <span
           class="badge text-bg-light border border-danger-subtle text-danger mb-3 hero-eyebrow"
-          >Aplikasi Prediksi Risiko Depresi Mahasiswa</span
+          >PRISMA GUARD</span
         >
         <h1 class="display-6 fw-bold mb-3 hero-title">
           Aplikasi Prediksi Risiko Depresi Mahasiswa
         </h1>
         <p class="lead text-secondary mb-4">
-          Lengkapi data mahasiswa dan kuesioner SRQ-29 untuk memperoleh gambaran
-          risiko awal berbasis model machine learning Logistic Regression.
+          Kenali kondisi diri Anda lebih awal dengan mengisi kuesioner kesehatan mental SRQ-29 
+          untuk mengetahui risiko depresi Anda secara dini berbasis teknologi machine learning.
         </p>
         <div class="hero-actions d-flex flex-wrap gap-2">
           <a
@@ -35,7 +35,7 @@
           <a
             href="{{ url_for('main.about') }}"
             class="btn btn-outline-secondary btn-lg px-4"
-            >Pelajari Metode</a
+            >Tentang Sistem</a
           >
         </div>
       </div>
@@ -43,10 +43,10 @@
         <div class="glass-card p-4 h-100">
           <h2 class="h5 fw-semibold mb-3">Mengapa Prisma Guard?</h2>
           <ul class="mb-0 ps-3 text-secondary">
-            <li>Proses cepat, selesai sekitar 3-5 menit.</li>
-            <li>Input berbasis SRQ-29 + data demografis.</li>
-            <li>Hasil probabilitas disertai rekomendasi awal.</li>
-            <li>Tidak menyimpan data pengguna ke database.</li>
+            <li>Proses skrining cepat (±3–5 menit).</li>
+            <li>Menggunakan teknologi machine learning yang akurat.</li>
+            <li>Hasil prediksi berupa probabilitas dan rekomendasi awal.</li>
+            <li>Data pengguna tidak disimpan untuk menjaga privasi.</li>
           </ul>
           <div class="trust-metrics mt-4">
             <div class="metric-item">
@@ -54,8 +54,8 @@
               <span>Alur sederhana</span>
             </div>
             <div class="metric-item">
-              <strong>29 SRQ</strong>
-              <span>Pertanyaan validasi</span>
+              <strong>SRQ-29</strong>
+              <span>29 pertanyaan validasi</span>
             </div>
             <div class="metric-item">
               <strong>In-Memory</strong>
@@ -68,15 +68,15 @@
   </section>
 
   <section class="mb-5">
-    <h2 class="h3 fw-bold mb-4 section-title">Cara Kerja</h2>
+    <h2 class="h3 fw-bold mb-4 section-title">Cara Menggunakan Aplikasi</h2>
     <div class="row g-3">
       <div class="col-md-4">
         <div class="card h-100 border-0 shadow-sm step-card">
           <div class="card-body">
             <span class="step-index">01</span>
-            <h3 class="h5 mt-3">Isi Data Mahasiswa</h3>
+            <h3 class="h5 mt-3">Isi Data Diri Mahasiswa</h3>
             <p class="text-secondary mb-0">
-              Masukkan identitas akademik dasar seperti usia, semester, dan IPK.
+              Masukkan data diri mahasiswa seperti nama, jenis kelamin, usia, perguruan tinggi, program studi, semester, dan IPK.
             </p>
           </div>
         </div>
@@ -87,7 +87,7 @@
             <span class="step-index">02</span>
             <h3 class="h5 mt-3">Jawab Kuesioner SRQ-29</h3>
             <p class="text-secondary mb-0">
-              Jawab 29 pertanyaan dengan jujur untuk gambaran kondisi saat ini.
+              Jawab 29 pertanyaan secara jujur sesuai dengan kondisi yang Anda alami selama 30 hari terakhir.
             </p>
           </div>
         </div>
@@ -98,8 +98,7 @@
             <span class="step-index">03</span>
             <h3 class="h5 mt-3">Lihat Hasil Prediksi</h3>
             <p class="text-secondary mb-0">
-              Sistem menampilkan status awal dan rekomendasi tindak lanjut yang
-              relevan.
+              Sistem akan menampilkan hasil prediksi risiko depresi beserta rekomendasi yang sesuai berdasarkan hasil jawaban Anda.
             </p>
           </div>
         </div>
@@ -131,8 +130,8 @@
             data-bs-parent="#faqAccordion"
           >
             <div class="accordion-body text-secondary">
-              Sistem ini ditujukan sebagai alat skrining dini untuk membantu
-              mahasiswa mengenali indikasi awal gangguan kesehatan mental.
+              Sistem ini ditujukan sebagai alat skrining awal untuk membantu mahasiswa 
+              mengenali indikasi risiko depresi secara dini berbasis machine learning.
             </div>
           </div>
         </div>
@@ -156,8 +155,8 @@
             data-bs-parent="#faqAccordion"
           >
             <div class="accordion-body text-secondary">
-              Bukan. Hasil hanya prediksi awal berbasis model statistik. Untuk
-              diagnosis, tetap konsultasikan ke psikolog atau psikiater.
+              Tidak. Hasil yang ditampilkan hanya sebagai prediksi awal dan bukan diagnosis medis. Untuk 
+              diagnosis yang lebih akurat, disarankan untuk berkonsultasi dengan tenaga profesional.
             </div>
           </div>
         </div>
@@ -181,8 +180,8 @@
             data-bs-parent="#faqAccordion"
           >
             <div class="accordion-body text-secondary">
-              Tidak. Sesuai desain sistem ini, semua pemrosesan dilakukan secara
-              in-memory dan tidak ada penyimpanan ke database.
+              Tidak. Sistem ini tidak menyimpan data pengguna untuk menjaga privasi.
+              Semua data yang dimasukan hanya digunakan selama proses prediksi berlangsung.
             </div>
           </div>
         </div>
@@ -196,7 +195,7 @@
               aria-expanded="false"
               aria-controls="faqFour"
             >
-              Siapa yang sebaiknya menggunakan alat ini?
+              Siapa yang dapat menggunakan sistem ini?
             </button>
           </h3>
           <div
@@ -206,8 +205,8 @@
             data-bs-parent="#faqAccordion"
           >
             <div class="accordion-body text-secondary">
-              Mahasiswa yang ingin melakukan pengecekan awal kondisi psikologis
-              untuk meningkatkan kewaspadaan dan mencari bantuan lebih cepat.
+              Sistem ini ditujukan untuk mahasiswa yang ingin melakukan pengecekan awal kondisi
+              psikologis untuk meningkatkan kewaspadaan dan mencari bantuan lebih cepat.
             </div>
           </div>
         </div>

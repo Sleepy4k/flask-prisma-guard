@@ -18,8 +18,7 @@
         <div class="card-body p-4 p-lg-5">
           <h1 class="h3 fw-bold mb-2">Hasil Prediksi</h1>
           <p class="text-secondary">
-            Output berikut merupakan hasil skrining awal dan tidak disimpan oleh
-            sistem.
+            Berikut merupakan hasil skrining awal berdasarkan jawaban yang telah diberikan.
           </p>
 
           {% if is_error %} {% set status_class = 'status-error' %} {% elif
@@ -30,7 +29,7 @@
             <span class="status-pill {{ status_class }}">{{ status }}</span>
             {% if probability is not none %}
             <p class="mb-2 mt-3">
-              Estimasi probabilitas risiko masalah mental:
+              Estimasi probabilitas risiko depresi:
             </p>
             <h2 class="display-6 fw-bold text-danger">{{ probability }}%</h2>
             <progress
@@ -107,7 +106,7 @@
           <h2 class="h5 fw-semibold mb-3">Rekomendasi</h2>
           {% if matched_recommendations %}
           <p class="text-secondary small mb-3">
-            Rekomendasi berikut dihasilkan langsung dari setiap jawaban
+            Rekomendasi berikut dihasilkan dari setiap jawaban
             <strong>Ya</strong> pada SRQ-29.
           </p>
           <ul class="recommendation-list mb-4">
@@ -129,9 +128,8 @@
           {% endif %}
 
           <p class="small text-secondary mb-4">
-            <strong>Disclaimer:</strong> Aplikasi ini hanya alat skrining awal,
-            bukan diagnosis klinis. Jika Anda membutuhkan bantuan, segera
-            hubungi layanan profesional.
+            <strong>Disclaimer:</strong> Jawaban yang dihasilkan hanya sebagai langkah awal pencegahan, 
+            dan bukan diagnosis klinis. Jika Anda membutuhkan bantuan, segera hubungi layanan profesional.
           </p>
 
           <div class="d-flex flex-wrap gap-2">
