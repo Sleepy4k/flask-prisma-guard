@@ -1,4 +1,21 @@
 (function () {
+    function updateSmootherLayoutOffset(enableOffset) {
+        const root = document.documentElement;
+
+        if (!enableOffset) {
+            root.classList.remove("smoother-active");
+            root.style.setProperty("--navbar-stack-offset", "0px");
+            return;
+        }
+
+        const navbar = document.querySelector(".main-navbar");
+        const navHeight = navbar ? Math.ceil(navbar.getBoundingClientRect().height) : 0;
+        const offset = navHeight > 0 ? navHeight + 8 : 0;
+
+        root.classList.add("smoother-active");
+        root.style.setProperty("--navbar-stack-offset", `${offset}px`);
+    }
+
     function clearPaintLock() {
         if (window.__pgGsapPaintTimer) {
             window.clearTimeout(window.__pgGsapPaintTimer);
@@ -10,6 +27,7 @@
 
     const hasCore = Boolean(window.gsap && window.ScrollTrigger && window.ScrollToPlugin);
     if (!hasCore) {
+        updateSmootherLayoutOffset(false);
         clearPaintLock();
         return;
     }
@@ -90,6 +108,8 @@
     };
 
     document.addEventListener("DOMContentLoaded", () => {
+        updateSmootherLayoutOffset(false);
+
         gsap.from(".main-navbar .container", {
             y: -16,
             autoAlpha: 0,
@@ -112,8 +132,16 @@
                     normalizeScroll: true,
                     ignoreMobileResize: true,
                 });
+
+                updateSmootherLayoutOffset(true);
             }
+        } else {
+            updateSmootherLayoutOffset(false);
         }
+
+        window.addEventListener("resize", () => {
+            updateSmootherLayoutOffset(Boolean(smootherInstance));
+        });
 
         const scrollToTopBtn = document.getElementById("scrollToTopBtn");
         if (scrollToTopBtn) {

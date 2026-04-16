@@ -18,6 +18,8 @@
     --space-sm: clamp(0.75rem, 0.95vw, 1.1rem);
     --space-md: clamp(1rem, 1.35vw, 1.45rem);
     --space-lg: clamp(1.25rem, 2vw, 2rem);
+    --navbar-stack-offset: 0px;
+    --page-bottom-space: clamp(0.7rem, 1.3vw, 1rem);
 }
 
 * {
@@ -159,6 +161,11 @@ a {
 
 #smooth-content {
     min-height: 100vh;
+    padding-bottom: var(--page-bottom-space);
+}
+
+html.smoother-active #smooth-content {
+    padding-top: var(--navbar-stack-offset);
 }
 
 .content-shell {
